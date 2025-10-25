@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hosein Ranjbar</title>
+
+<style>
+
+  body {
+
+    background-color: black;
+
+    color: #00ff00;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 18px;
+
+    padding: 20px;
+
+    overflow: hidden;
+
+    white-space: pre-wrap;
+
+  }
+
+  .cursor {
+
+    display: inline-block;
+
+    width: 10px;
+
+    background-color: #00ff00;
+
+    animation: blink 0.6s infinite;
+
+  }
+
+  @keyframes blink {
+
+    0%, 50% { opacity: 1; }
+
+    51%, 100% { opacity: 0; }
+
+  }
+
+  .white { color: white; }
+
+  .spacer { margin-top: 10px; display: block; }
+
+  .button-box {
+
+    display: inline-block;
+
+    border: 2px solid #00ff00;
+
+    padding: 8px 20px;
+
+    text-align: center;
+
+    color: #00ff00;
+
+    margin: 10px 10px 0 0;
+
+    text-decoration: none;
+
+    opacity: 0;
+
+    transform: translateY(10px);
+
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+  }
+
+  .button-box.show {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+  }
+
+  .button-box:hover {
+
+    background-color: #00ff00;
+
+    color: black;
+
+  }
+
+  .input-line {
+
+    display: flex;
+
+    align-items: center;
+
+  }
+
+  .input-line span {
+
+    margin-right: 5px;
+
+  }
+
+  .user-input {
+
+    border: none;
+
+    background: none;
+
+    color: #00ff00;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 18px;
+
+    outline: none;
+
+    width: 100px;
+
+  }
+
+</style>
+
+</head>
+
+<body>
+
+<div id="terminal"></div>
+
+<script>
+
+const terminal = document.getElementById("terminal");
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+async function blinkCursor(times = 5) {
+
+  const cursor = document.createElement("span");
+
+  cursor.className = "cursor";
+
+  terminal.appendChild(cursor);
+
+  for (let i = 0; i < times; i++) await sleep(400);
+
+  cursor.remove();
+
+}
+
+async function typeText(text, colorClass = "", delay = 100) {
+
+  const line = document.createElement("div");
+
+  for (let char of text) {
+
+    const span = document.createElement("span");
+
+    if (colorClass === "white") span.className = "white";
+
+    span.textContent = char;
+
+    line.appendChild(span);
+
+    terminal.appendChild(line);
+
+    await sleep(delay);
+
+  }
+
+  terminal.appendChild(document.createElement("br"));
+
+  const spacer = document.createElement("span");
+
+  spacer.className = "spacer";
+
+  terminal.appendChild(spacer);
+
+}
+
+async function typeButton(text, href, delay = 100) {
+
+  const btn = document.createElement("a");
+
+  btn.className = "button-box";
+
+  btn.href = href;
+
+  btn.target = "_blank";
+
+  terminal.appendChild(btn);
+
+  await sleep(200);
+
+  btn.classList.add("show");
+
+  for (let char of text) {
+
+    btn.textContent += char;
+
+    await sleep(delay);
+
+  }
+
+  await sleep(500);
+
+}
+
+async function showButtons() {
+
+  await typeButton("GITHUB", "https://github.com/hosein-ranjbar");
+
+  await typeButton("CALL", "tel:+989379380848");
+
+  await typeButton("EMAIL", "mailto:hosein.r67@usa.com");
+
+}
+
+async function showIPandClock() {
+
+  const spacer = document.createElement("div");
+
+  spacer.style.marginTop = "100px";
+
+  terminal.appendChild(spacer);
+
+  let ipText = "your ip : ";
+
+  let ipValue = "";
+
+  try {
+
+    const response = await fetch("https://api.ipify.org?format=json");
+
+    const data = await response.json();
+
+    ipValue = data.ip;
+
+  } catch {
+
+    ipValue = "unable to detect";
+
+  }
+
+  await typeText(ipText + ipValue);
+
+  const clockDiv = document.createElement("div");
+
+  clockDiv.className = "white";
+
+  terminal.appendChild(clockDiv);
+
+  function updateClock() {
+
+    const now = new Date();
+
+    const h = String(now.getHours()).padStart(2, '0');
+
+    const m = String(now.getMinutes()).padStart(2, '0');
+
+    const s = String(now.getSeconds()).padStart(2, '0');
+
+    const ms = String(Math.floor(now.getMilliseconds() / 10)).padStart(2, '0');
+
+    clockDiv.textContent = `time : ${h}:${m}:${s}.${ms}`;
+
+  }
+
+  setInterval(updateClock, 50);
+
+  updateClock();
+
+}
+
+async function askQuestion() {
+
+  await typeText("Do you want to see my interests? (yes/no)");
+
+  const inputLine = document.createElement("div");
+
+  inputLine.className = "input-line";
+
+  inputLine.innerHTML = `<span>C:\\></span>`;
+
+  const input = document.createElement("input");
+
+  input.className = "user-input";
+
+  inputLine.appendChild(input);
+
+  terminal.appendChild(inputLine);
+
+  input.focus();
+
+  return new Promise(resolve => {
+
+    input.addEventListener("keydown", e => {
+
+      if (e.key === "Enter") {
+
+        const value = input.value.trim().toLowerCase();
+
+        input.disabled = true;
+
+        resolve(value);
+
+      }
+
+    });
+
+  });
+
+}
+
+async function showInterests() {
+
+  await typeText("1. web development || php | html | css | js");
+
+  await typeText("2. Seo");
+
+  await typeText("3. ai | llm");
+
+  await typeText("4. ui | ux");
+
+  await typeText("5. data content");
+
+}
+
+async function main() {
+
+  await blinkCursor();
+
+  await typeText("welcome to my personal page");
+
+  await typeText("hosein ranjbar", "white");
+
+  const answer = await askQuestion();
+
+  if (answer === "yes" || answer === "y") {
+
+    await showInterests();
+
+  }
+
+  await showButtons();
+
+  await showIPandClock();
+
+}
+
+main();
+
+</script>
+
+</body>
+
+</html>
