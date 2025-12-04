@@ -14,115 +14,145 @@
 
   body {
 
-    background-color: black;
+    margin: 0;
 
-    color: #00ff00;
+    padding: 0 10px;
 
-    font-family: "Courier New", monospace;
+    background: #000;
 
-    font-size: 18px;
-
-    padding: 20px;
+    font-family: Arial, sans-serif;
 
     overflow: hidden;
 
-    white-space: pre-wrap;
-
   }
 
-  .cursor {
+  .container {
 
-    display: inline-block;
+    position: absolute;
 
-    width: 10px;
+    top: 50%;
 
-    background-color: #00ff00;
+    left: 50%;
 
-    animation: blink 0.6s infinite;
-
-  }
-
-  @keyframes blink {
-
-    0%, 50% { opacity: 1; }
-
-    51%, 100% { opacity: 0; }
-
-  }
-
-  .white { color: white; }
-
-  .spacer { margin-top: 10px; display: block; }
-
-  .button-box {
-
-    display: inline-block;
-
-    border: 2px solid #00ff00;
-
-    padding: 8px 20px;
+    transform: translate(-50%, -50%);
 
     text-align: center;
 
-    color: #00ff00;
+    width: calc(100% - 20px);
 
-    margin: 10px 10px 0 0;
+  }
 
-    text-decoration: none;
+  .line {
+
+    font-size: clamp(18px, 5vw, 32px);
+
+    display: inline-block;
+
+    white-space: nowrap;
+
+    margin: 12px 0;
+
+    color: orange;
+
+  }
+
+  .white {
+
+    color: #fff;
+
+  }
+
+  .char {
+
+    display: inline-block;
+
+    position: relative;
 
     opacity: 0;
 
-    transform: translateY(10px);
+    transform: translate(0px,0px) rotate(0deg);
 
-    transition: opacity 0.3s ease, transform 0.3s ease;
-
-  }
-
-  .button-box.show {
-
-    opacity: 1;
-
-    transform: translateY(0);
+    animation: explode 10s forwards;
 
   }
 
-  .button-box:hover {
+  @keyframes explode {
 
-    background-color: #00ff00;
+    0% {
 
-    color: black;
+      opacity: 0;
+
+      transform: translate(var(--x), var(--y)) rotate(var(--r));
+
+    }
+
+    90% {
+
+      opacity: 1;
+
+      transform: translate(var(--x2), var(--y2)) rotate(var(--r2));
+
+    }
+
+    100% {
+
+      opacity: 1;
+
+      transform: translate(0,0) rotate(0deg);
+
+    }
 
   }
 
-  .input-line {
+  
+
+  .links {
+
+    margin-top: 50px;
 
     display: flex;
 
-    align-items: center;
+    justify-content: center;
+
+    gap: 25px;
+
+    flex-wrap: wrap;
 
   }
 
-  .input-line span {
+  .links a {
 
-    margin-right: 5px;
+    display: inline-block;
+
+    padding: 8px 18px;
+
+    border: 2px solid orange;
+
+    border-radius: 6px;
+
+    font-size: clamp(16px, 4vw, 24px);
+
+    color: orange;
+
+    text-decoration: none;
+
+    opacity: 0; 
+
+    transition: opacity 1.5s ease;
 
   }
 
-  .user-input {
+  .links a.show-border {
 
-    border: none;
+    opacity: 1;
 
-    background: none;
+  }
 
-    color: #00ff00;
+  .links a:hover {
 
-    font-family: "Courier New", monospace;
+    background: orange;
 
-    font-size: 18px;
-
-    outline: none;
-
-    width: 100px;
+    color: #000;
 
   }
 
@@ -132,229 +162,93 @@
 
 <body>
 
-<div id="terminal"></div>
+<div class="container">
+
+  <div class="line" data-text="Well come to my prsonal page"></div>
+
+  <div class="line white" data-text="Hosein ranjbar"></div>
+
+  <div class="links">
+
+    <a href="tel:+989379380848" data-text="Call">Call</a>
+
+    <a href="https://github.com/hosein-ranjbar" target="_blank" data-text="GitHub">GitHub</a>
+
+    <a href="mailto:hosein.r67@usa.com" data-text="Email">Email</a>
+
+  </div>
+
+</div>
 
 <script>
 
-const terminal = document.getElementById("terminal");
+function explodeAllText() {
 
-function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+  const all = document.querySelectorAll(".line, .links a");
 
-async function blinkCursor(times = 5) {
+  const screenW = window.innerWidth;
 
-  const cursor = document.createElement("span");
+  const screenH = window.innerHeight;
 
-  cursor.className = "cursor";
+  all.forEach((el) => {
 
-  terminal.appendChild(cursor);
+    const text = el.getAttribute("data-text");
 
-  for (let i = 0; i < times; i++) await sleep(400);
+    el.innerHTML = "";
 
-  cursor.remove();
+    [...text].forEach((char, i) => {
 
-}
+      const span = document.createElement("span");
 
-async function typeText(text, colorClass = "", delay = 100) {
+      span.classList.add("char");
 
-  const line = document.createElement("div");
+      const randX = Math.random() * screenW - screenW / 2;
 
-  for (let char of text) {
+      const randY = Math.random() * screenH - screenH / 2;
 
-    const span = document.createElement("span");
+      const randR = Math.random() * 720 - 360;
 
-    if (colorClass === "white") span.className = "white";
+      const randX2 = Math.random() * screenW - screenW / 2;
 
-    span.textContent = char;
+      const randY2 = Math.random() * screenH - screenH / 2;
 
-    line.appendChild(span);
+      const randR2 = Math.random() * 720 - 360;
 
-    terminal.appendChild(line);
+      span.style.setProperty("--x", randX + "px");
 
-    await sleep(delay);
+      span.style.setProperty("--y", randY + "px");
 
-  }
+      span.style.setProperty("--r", randR + "deg");
 
-  terminal.appendChild(document.createElement("br"));
+      span.style.setProperty("--x2", randX2 + "px");
 
-  const spacer = document.createElement("span");
+      span.style.setProperty("--y2", randY2 + "px");
 
-  spacer.className = "spacer";
+      span.style.setProperty("--r2", randR2 + "deg");
 
-  terminal.appendChild(spacer);
+      span.textContent = char === " " ? "\u00A0" : char;
 
-}
-
-async function typeButton(text, href, delay = 100) {
-
-  const btn = document.createElement("a");
-
-  btn.className = "button-box";
-
-  btn.href = href;
-
-  btn.target = "_blank";
-
-  terminal.appendChild(btn);
-
-  await sleep(200);
-
-  btn.classList.add("show");
-
-  for (let char of text) {
-
-    btn.textContent += char;
-
-    await sleep(delay);
-
-  }
-
-  await sleep(500);
-
-}
-
-async function showButtons() {
-
-  await typeButton("GITHUB", "https://github.com/hosein-ranjbar");
-
-  await typeButton("CALL", "tel:+989379380848");
-
-  await typeButton("EMAIL", "mailto:hosein.r67@usa.com");
-
-}
-
-async function showIPandClock() {
-
-  const spacer = document.createElement("div");
-
-  spacer.style.marginTop = "100px";
-
-  terminal.appendChild(spacer);
-
-  let ipText = "your ip : ";
-
-  let ipValue = "";
-
-  try {
-
-    const response = await fetch("https://api.ipify.org?format=json");
-
-    const data = await response.json();
-
-    ipValue = data.ip;
-
-  } catch {
-
-    ipValue = "unable to detect";
-
-  }
-
-  await typeText(ipText + ipValue);
-
-  const clockDiv = document.createElement("div");
-
-  clockDiv.className = "white";
-
-  terminal.appendChild(clockDiv);
-
-  function updateClock() {
-
-    const now = new Date();
-
-    const h = String(now.getHours()).padStart(2, '0');
-
-    const m = String(now.getMinutes()).padStart(2, '0');
-
-    const s = String(now.getSeconds()).padStart(2, '0');
-
-    const ms = String(Math.floor(now.getMilliseconds() / 10)).padStart(2, '0');
-
-    clockDiv.textContent = `time : ${h}:${m}:${s}.${ms}`;
-
-  }
-
-  setInterval(updateClock, 50);
-
-  updateClock();
-
-}
-
-async function askQuestion() {
-
-  await typeText("Do you want to see my interests? (yes/no)");
-
-  const inputLine = document.createElement("div");
-
-  inputLine.className = "input-line";
-
-  inputLine.innerHTML = `<span>C:\\></span>`;
-
-  const input = document.createElement("input");
-
-  input.className = "user-input";
-
-  inputLine.appendChild(input);
-
-  terminal.appendChild(inputLine);
-
-  input.focus();
-
-  return new Promise(resolve => {
-
-    input.addEventListener("keydown", e => {
-
-      if (e.key === "Enter") {
-
-        const value = input.value.trim().toLowerCase();
-
-        input.disabled = true;
-
-        resolve(value);
-
-      }
+      el.appendChild(span);
 
     });
 
   });
 
-}
+  
 
-async function showInterests() {
+  setTimeout(() => {
 
-  await typeText("1. web development || php | html | css | js");
+    document.querySelectorAll('.links a').forEach(link => {
 
-  await typeText("2. Seo");
+      link.classList.add('show-border');
 
-  await typeText("3. ai | llm");
+    });
 
-  await typeText("4. ui | ux");
-
-  await typeText("5. data content");
+  }, 10000); 
 
 }
 
-async function main() {
-
-  await blinkCursor();
-
-  await typeText("welcome to my personal page");
-
-  await typeText("hosein ranjbar", "white");
-
-  const answer = await askQuestion();
-
-  if (answer === "yes" || answer === "y") {
-
-    await showInterests();
-
-  }
-
-  await showButtons();
-
-  await showIPandClock();
-
-}
-
-main();
+window.onload = explodeAllText;
 
 </script>
 
