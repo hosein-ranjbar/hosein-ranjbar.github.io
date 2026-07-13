@@ -3,271 +3,153 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
     <title>hosein ranjbar</title>
 
+    <!-- Schema Markup for Google -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "حسین رنجبر",
+            "alternateName": ["hoseinranjbar", "hossein ranjbar"],
+            "url": "https://hoseinranjbar.com",
+            "description": "Personal portfolio of Hosein Ranjbar – developer and creator."
+        }
+    </script>
+
     <style>
-
         /* Prevents all scrolling and handles layout */
-
-        html, body {
-
+        html,
+        body {
             margin: 0;
-
             padding: 0;
-
             width: 100%;
-
             height: 100%;
-
             background: #000;
-
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Arial, sans-serif;
-
-            overflow: hidden; /* Fixes the scrollbar issue */
-
+            overflow: hidden;
             display: flex;
-
             justify-content: center;
-
             align-items: center;
-
             position: relative;
-
         }
 
         .container {
-
             text-align: center;
-
             width: 100%;
-
             max-width: 1000px;
-
             padding: 0 20px;
-
             z-index: 10;
-
             position: relative;
-
         }
 
         .line {
-
             font-size: clamp(18px, 5vw, 28px);
-
             display: block;
-
             margin: 8px 0;
-
-            color: #4FC3F7; /* Brighter orange */
-
+            color: #4FC3F7;
             font-weight: 500;
-
             letter-spacing: 0.5px;
-
             text-transform: lowercase;
-
         }
 
-        .white { color: #fff; }
+        .white {
+            color: #fff;
+        }
 
         .char {
-
             display: inline-block;
-
             position: relative;
-
             opacity: 0;
-
             animation: explode 5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-
         }
 
         @keyframes explode {
-
-            0% { opacity: 0; transform: translate(var(--x), var(--y)) rotate(var(--r)); }
-
-            85% { opacity: 1; transform: translate(var(--x2), var(--y2)) rotate(var(--r2)); }
-
-            100% { opacity: 1; transform: translate(0,0) rotate(0deg); }
-
+            0% {
+                opacity: 0;
+                transform: translate(var(--x), var(--y)) rotate(var(--r));
+            }
+            85% {
+                opacity: 1;
+                transform: translate(var(--x2), var(--y2)) rotate(var(--r2));
+            }
+            100% {
+                opacity: 1;
+                transform: translate(0, 0) rotate(0deg);
+            }
         }
 
         /* Responsive Button Grid */
-
         .links {
-
             margin-top: 50px;
-
             display: grid;
-
             gap: 15px;
-
-            /* Mobile: 2 columns */
-
             grid-template-columns: repeat(2, 1fr);
-
             justify-content: center;
-
             width: 100%;
-
             max-width: 400px;
-
             margin-left: auto;
-
             margin-right: auto;
-
         }
 
-        /* Tablet and Desktop: 4 columns in one row */
-
         @media (min-width: 768px) {
-
             .links {
-
                 max-width: none;
-
                 grid-template-columns: repeat(4, auto);
-
                 display: flex;
-
                 gap: 20px;
-
             }
-
         }
 
         .links a {
-
             display: flex;
-
             justify-content: center;
-
             align-items: center;
-
             padding: 12px 24px;
-
-            border: 1.5px solid #ff9500;
-
+            border: 1.5px solid #4FC3F7;
             border-radius: 12px;
-
             font-size: 15px;
-
-            color: #ff9500;
-
+            color: #4FC3F7;
             text-decoration: none;
-
             font-weight: 500;
-
             opacity: 0;
-
             text-transform: lowercase;
-
             transition: all 0.3s ease;
-
             -webkit-tap-highlight-color: transparent;
-
             white-space: nowrap;
-
         }
 
         .links a.show-border {
-
             opacity: 1;
-
             animation: liquidPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-
         }
 
         @keyframes liquidPop {
-
-            0% { transform: scale(0.5); }
-
-            100% { transform: scale(1); }
-
+            0% {
+                transform: scale(0.5);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
 
         .links a:hover {
-
-            background: #ff9500;
-
+            background: #4FC3F7;
             color: #000;
-
             transform: scale(1.05);
-
         }
-
-        /* Falling words - Prevent Scroll */
-
-        .falling-word {
-
-            position: absolute;
-
-            top: -100px;
-
-            /* Lighter, brighter orange with controlled opacity */
-
-            color: rgba(200, 200, 200, 0.65); 
-
-            font-weight: 400;
-
-            pointer-events: none;
-
-            white-space: nowrap;
-
-            opacity: 0;
-
-            animation: slowFall var(--duration) cubic-bezier(0.4, 0, 0.6, 1) forwards;
-
-            z-index: 1;
-
-        }
-
-        @keyframes slowFall {
-
-            0% { 
-
-                transform: translateY(0) rotate(var(--rot)); 
-
-                opacity: 0; 
-
-            }
-
-            15% { opacity: 0.65; } /* Brighter peak */
-
-            85% { opacity: 0.4; }
-
-            100% { 
-
-                transform: translateY(110vh) rotate(var(--rot2)); 
-
-                opacity: 0; 
-
-            }
-
-        }
-
     </style>
-
 </head>
 
 <body>
 
     <div class="container">
-
         <div class="line" data-text="welcome to my personal page"></div>
-
         <div class="line white" data-text="hosein ranjbar"></div>
 
-        
-
         <div class="links">
-
             <a href="tel:+989379380848" data-text="call">call</a>
             <a href="https://codepen.io/hosein-ranjbar-the-typescripter" data-text="codepen">codepen</a>
             <a href="https://github.com/hosein-ranjbar" target="_blank" data-text="github">github</a>
@@ -275,141 +157,47 @@
             <a href="game.html" data-text="game">game</a>
             <a href="" data-text="project">project</a>
         </div>
-
     </div>
 
     <script>
-
         function explodeAllText() {
-
             const all = document.querySelectorAll(".line, .links a");
-
             const screenW = window.innerWidth;
-
             const screenH = window.innerHeight;
-
             all.forEach((el) => {
-
                 const text = el.getAttribute("data-text");
-
                 el.innerHTML = "";
-
                 [...text].forEach((char, i) => {
-
                     const span = document.createElement("span");
-
                     span.classList.add("char");
-
-                    // Explosion range
-
                     const randX = (Math.random() - 0.5) * screenW * 1.1;
-
                     const randY = (Math.random() - 0.5) * screenH * 1.1;
-
                     const randR = Math.random() * 720 - 360;
 
-                    
-
                     span.style.setProperty("--x", randX + "px");
-
                     span.style.setProperty("--y", randY + "px");
-
                     span.style.setProperty("--r", randR + "deg");
-
                     span.style.animationDelay = (i * 0.03) + "s";
 
-                    
-
                     span.textContent = char === " " ? "\u00A0" : char;
-
                     el.appendChild(span);
-
                 });
-
             });
 
             setTimeout(() => {
-
                 document.querySelectorAll('.links a').forEach((link, index) => {
-
                     setTimeout(() => {
-
                         link.classList.add('show-border');
-
                     }, index * 120);
-
                 });
-
-            }, 4500); 
-
-            setTimeout(startFallingWords, 6500); 
-
+            }, 4500);
         }
 
-        const techWords = [
-
-            "html5", "css3", "javascript", "python", "ai", "php", "wordpress", 
-
-            "c#", "macos", "linux", "kali", "ubuntu", "mysql", "git", "docker", 
-
-            "react", "node.js", "cybersecurity", "swift", "android"
-
-        ];
-
-        function startFallingWords() {
-
-            function createWord() {
-
-                const word = document.createElement('div');
-
-                word.className = 'falling-word';
-
-                word.textContent = techWords[Math.floor(Math.random() * techWords.length)];
-
-                // Ensure words stay within horizontal bounds to prevent horizontal scroll
-
-                const sizeRem = Math.random() * 2 + 0.6;
-
-                const wordWidthEstimate = word.textContent.length * (sizeRem * 12);
-
-                const startX = Math.random() * (window.innerWidth - wordWidthEstimate);
-
-                
-
-                const duration = Math.random() * 10 + 15; // 15s to 25s for ultra smooth
-
-                
-
-                word.style.left = Math.max(0, startX) + 'px';
-
-                word.style.fontSize = sizeRem + 'rem';
-
-                word.style.setProperty('--duration', duration + 's');
-
-                word.style.setProperty('--rot', (Math.random() * 30 - 15) + 'deg');
-
-                word.style.setProperty('--rot2', (Math.random() * 90 - 45) + 'deg');
-
-                document.body.appendChild(word);
-
-                word.addEventListener('animationend', () => word.remove());
-
-            }
-
-            setInterval(createWord, 700);
-
-        }
-
-        // Adjust explosion on resize
-
-        window.addEventListener('resize', () => {
-
-            // Optional: Re-calculate center logic if needed
-
+        window.addEventListener('resize', function() {
+            // keep as is
         });
 
         window.onload = explodeAllText;
-
     </script>
 
 </body>
