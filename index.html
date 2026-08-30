@@ -1,205 +1,1784 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>hosein ranjbar</title>
 
-    <!-- Schema Markup for Google -->
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "حسین رنجبر",
-            "alternateName": ["hoseinranjbar", "hossein ranjbar"],
-            "url": "https://hoseinranjbar.com",
-            "description": "Personal portfolio of Hosein Ranjbar – developer and creator."
-        }
-    </script>
+<meta charset="UTF-8">
 
-    <style>
-        /* Prevents all scrolling and handles layout */
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Arial, sans-serif;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
 
-        .container {
-            text-align: center;
-            width: 100%;
-            max-width: 1000px;
-            padding: 0 20px;
-            z-index: 10;
-            position: relative;
-        }
+>
 
-        .line {
-            font-size: clamp(18px, 5vw, 28px);
-            display: block;
-            margin: 8px 0;
-            color: #4FC3F7;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            text-transform: lowercase;
-        }
+<title>Hossein Ranjbar</title>
 
-        .white {
-            color: #fff;
-        }
+<meta
+name="description"
+content="Hossein Ranjbar — Builder creating digital products, software and interactive experiences."
 
-        .char {
-            display: inline-block;
-            position: relative;
-            opacity: 0;
-            animation: explode 5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-        }
+>
 
-        @keyframes explode {
-            0% {
-                opacity: 0;
-                transform: translate(var(--x), var(--y)) rotate(var(--r));
-            }
-            85% {
-                opacity: 1;
-                transform: translate(var(--x2), var(--y2)) rotate(var(--r2));
-            }
-            100% {
-                opacity: 1;
-                transform: translate(0, 0) rotate(0deg);
-            }
-        }
+<meta
+name="author"
+content="Hossein Ranjbar"
 
-        /* Responsive Button Grid */
-        .links {
-            margin-top: 50px;
-            display: grid;
-            gap: 15px;
-            grid-template-columns: repeat(2, 1fr);
-            justify-content: center;
-            width: 100%;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+>
 
-        @media (min-width: 768px) {
-            .links {
-                max-width: none;
-                grid-template-columns: repeat(4, auto);
-                display: flex;
-                gap: 20px;
-            }
-        }
+<meta
+name="theme-color"
+content="#02050b"
 
-        .links a {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 12px 24px;
-            border: 1.5px solid #4FC3F7;
-            border-radius: 12px;
-            font-size: 15px;
-            color: #4FC3F7;
-            text-decoration: none;
-            font-weight: 500;
-            opacity: 0;
-            text-transform: lowercase;
-            transition: all 0.3s ease;
-            -webkit-tap-highlight-color: transparent;
-            white-space: nowrap;
-        }
+>
 
-        .links a.show-border {
-            opacity: 1;
-            animation: liquidPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
+<link
+    rel="canonical"
+    href="https://hosseinranjbar.ir/"
+>
 
-        @keyframes liquidPop {
-            0% {
-                transform: scale(0.5);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
+<!-- =========================================================
+     FAVICON
+     همان عکس پروفایل GitHub
+========================================================= -->
 
-        .links a:hover {
-            background: #4FC3F7;
-            color: #000;
-            transform: scale(1.05);
-        }
-    </style>
+<link
+    rel="icon"
+    type="image/jpeg"
+    href="https://avatars.githubusercontent.com/u/107248189?v=4"
+>
+
+<link
+    rel="shortcut icon"
+    href="https://avatars.githubusercontent.com/u/107248189?v=4"
+>
+
+<link
+    rel="apple-touch-icon"
+    href="https://avatars.githubusercontent.com/u/107248189?v=4"
+>
+
+<!-- =========================================================
+     FONT
+========================================================= -->
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+>
+
+<!-- =========================================================
+     OPEN GRAPH
+========================================================= -->
+
+<meta
+property="og:type"
+content="profile"
+
+>
+
+<meta
+property="og:title"
+content="Hossein Ranjbar"
+
+>
+
+<meta
+property="og:description"
+content="Hossein Ranjbar — Builder creating digital products, software and interactive experiences."
+
+>
+
+<meta
+property="og:url"
+content="https://hosseinranjbar.ir/"
+
+>
+
+<meta
+property="og:image"
+content="https://avatars.githubusercontent.com/u/107248189?v=4"
+
+>
+
+<meta
+property="profile:first_name"
+content="Hossein"
+
+>
+
+<meta
+property="profile:last_name"
+content="Ranjbar"
+
+>
+
+<!-- =========================================================
+     TWITTER / X
+========================================================= -->
+
+<meta
+name="twitter:card"
+content="summary_large_image"
+
+>
+
+<meta
+name="twitter:title"
+content="Hossein Ranjbar"
+
+>
+
+<meta
+name="twitter:description"
+content="Hossein Ranjbar — Builder creating digital products, software and interactive experiences."
+
+>
+
+<meta
+name="twitter:image"
+content="https://avatars.githubusercontent.com/u/107248189?v=4"
+
+>
+
+<!-- =========================================================
+     PERSON SCHEMA
+========================================================= -->
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+
+    "@type": "Person",
+
+    "@id": "https://hosseinranjbar.ir/#person",
+
+    "name": "Hossein Ranjbar",
+
+    "givenName": "Hossein",
+
+    "familyName": "Ranjbar",
+
+    "url": "https://hosseinranjbar.ir/",
+
+    "image": "https://avatars.githubusercontent.com/u/107248189?v=4",
+
+    "jobTitle": "Builder",
+
+    "description": "Hossein Ranjbar is a builder focused on creating digital products, software and interactive experiences.",
+
+    "email": "mailto:hosein.r67@usa.com",
+
+    "telephone": "+989379380848",
+
+    "sameAs": [
+        "https://github.com/hosein-ranjbar",
+        "https://codepen.io/hosein-ranjbar-the-typescripter"
+    ],
+
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://hosseinranjbar.ir/"
+    }
+}
+</script>
+
+<!-- =========================================================
+     WEBSITE SCHEMA
+========================================================= -->
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+
+    "@type": "WebSite",
+
+    "@id": "https://hosseinranjbar.ir/#website",
+
+    "url": "https://hosseinranjbar.ir/",
+
+    "name": "Hossein Ranjbar",
+
+    "description": "Personal website of Hossein Ranjbar.",
+
+    "publisher": {
+        "@id": "https://hosseinranjbar.ir/#person"
+    }
+}
+</script>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100%;
+}
+
+body{
+
+    overflow:hidden;
+
+    background:#02050b;
+
+    color:white;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "Segoe UI",
+        sans-serif;
+
+    -webkit-font-smoothing:antialiased;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.background{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            #101a2a 0%,
+            #050a13 48%,
+            #010308 100%
+        );
+}
+
+
+/* =========================================================
+   GRADIENT BLOBS
+========================================================= */
+
+.blob{
+
+    position:absolute;
+
+    width:55vw;
+    height:55vw;
+
+    max-width:850px;
+    max-height:850px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    will-change:transform;
+
+    mix-blend-mode:screen;
+}
+
+
+/* BLUE */
+
+.blob.blue{
+
+    left:-20%;
+    top:-25%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(40,120,255,.78) 0%,
+            rgba(35,100,220,.38) 30%,
+            rgba(20,70,160,.12) 55%,
+            transparent 72%
+        );
+
+    animation:
+        blueMove 11s ease-in-out infinite alternate;
+}
+
+
+/* CYAN */
+
+.blob.cyan{
+
+    right:-20%;
+    top:0;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(30,215,220,.65) 0%,
+            rgba(20,145,200,.32) 35%,
+            rgba(20,80,150,.12) 55%,
+            transparent 72%
+        );
+
+    animation:
+        cyanMove 14s ease-in-out infinite alternate;
+}
+
+
+/* PURPLE */
+
+.blob.purple{
+
+    left:-10%;
+    bottom:-35%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(125,75,255,.65) 0%,
+            rgba(90,65,220,.32) 35%,
+            rgba(50,40,150,.12) 58%,
+            transparent 72%
+        );
+
+    animation:
+        purpleMove 13s ease-in-out infinite alternate;
+}
+
+
+/* BOTTOM BLUE */
+
+.blob.bottom{
+
+    right:0;
+    bottom:-40%;
+
+    width:45vw;
+    height:45vw;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(35,120,255,.55) 0%,
+            rgba(30,100,220,.2) 40%,
+            transparent 70%
+        );
+
+    animation:
+        bottomMove 10s ease-in-out infinite alternate;
+}
+
+
+/* =========================================================
+   BACKGROUND MOTION
+========================================================= */
+
+@keyframes blueMove{
+
+    0%{
+        transform:
+            translate3d(-5vw,-3vh,0)
+            scale(1);
+    }
+
+    50%{
+        transform:
+            translate3d(17vw,12vh,0)
+            scale(1.12);
+    }
+
+    100%{
+        transform:
+            translate3d(3vw,25vh,0)
+            scale(.94);
+    }
+}
+
+
+@keyframes cyanMove{
+
+    0%{
+        transform:
+            translate3d(5vw,0,0)
+            scale(1);
+    }
+
+    50%{
+        transform:
+            translate3d(-15vw,12vh,0)
+            scale(1.15);
+    }
+
+    100%{
+        transform:
+            translate3d(-5vw,-12vh,0)
+            scale(.94);
+    }
+}
+
+
+@keyframes purpleMove{
+
+    0%{
+        transform:
+            translate3d(-5vw,5vh,0)
+            scale(1);
+    }
+
+    50%{
+        transform:
+            translate3d(15vw,-12vh,0)
+            scale(1.13);
+    }
+
+    100%{
+        transform:
+            translate3d(25vw,5vh,0)
+            scale(.96);
+    }
+}
+
+
+@keyframes bottomMove{
+
+    0%{
+        transform:
+            translate3d(5vw,5vh,0)
+            scale(1);
+    }
+
+    50%{
+        transform:
+            translate3d(-10vw,-15vh,0)
+            scale(1.15);
+    }
+
+    100%{
+        transform:
+            translate3d(-20vw,0,0)
+            scale(.95);
+    }
+}
+
+
+/* =========================================================
+   COLOR WAVE
+========================================================= */
+
+.color-wave{
+
+    position:absolute;
+
+    width:120vw;
+
+    height:35vh;
+
+    left:-10vw;
+
+    top:34vh;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(45,130,255,.12),
+            rgba(55,220,220,.16),
+            rgba(130,80,255,.13),
+            rgba(30,120,255,.10),
+            transparent
+        );
+
+    transform:rotate(-7deg);
+
+    filter:blur(35px);
+
+    opacity:.8;
+
+    animation:
+        waveMove 9s ease-in-out infinite alternate;
+
+    will-change:transform;
+}
+
+
+@keyframes waveMove{
+
+    0%{
+        transform:
+            translate3d(-12%,0,0)
+            rotate(-8deg)
+            scale(1);
+    }
+
+    100%{
+        transform:
+            translate3d(12%,4vh,0)
+            rotate(-4deg)
+            scale(1.08);
+    }
+}
+
+
+/* =========================================================
+   NOISE
+========================================================= */
+
+.noise{
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    opacity:.025;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+
+/* =========================================================
+   VIGNETTE
+========================================================= */
+
+.vignette{
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 25%,
+            rgba(0,0,0,.22) 70%,
+            rgba(0,0,0,.6) 100%
+        );
+}
+
+
+/* =========================================================
+   MOUSE LIGHT
+========================================================= */
+
+.mouse-light{
+
+    position:fixed;
+
+    width:380px;
+    height:380px;
+
+    left:0;
+    top:0;
+
+    pointer-events:none;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(90,170,255,.12),
+            rgba(80,150,255,.035) 35%,
+            transparent 70%
+        );
+
+    transform:
+        translate3d(-50%,-50%,0);
+
+    will-change:transform;
+
+    z-index:5;
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.page{
+
+    position:relative;
+
+    width:
+        min(620px,calc(100% - 28px));
+
+    height:100svh;
+
+    margin:auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:10;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    text-align:center;
+
+    margin-bottom:30px;
+}
+
+
+/* =========================================================
+   AVATAR
+   ORIGINAL: 82px
+   NEW: 111px
+   = approximately 35% larger
+========================================================= */
+
+.avatar{
+
+    position:relative;
+
+    width:111px;
+    height:111px;
+
+    margin:
+        0 auto 22px;
+
+    border-radius:50%;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.15),
+            rgba(255,255,255,.035)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.25);
+
+    box-shadow:
+
+        inset
+        0 1px 1px
+        rgba(255,255,255,.30),
+
+        inset
+        0 -1px 1px
+        rgba(0,0,0,.3),
+
+        0 20px 60px
+        rgba(0,0,0,.35),
+
+        0 0 45px
+        rgba(80,150,255,.16);
+
+    backdrop-filter:
+        blur(18px)
+        saturate(180%);
+
+    -webkit-backdrop-filter:
+        blur(18px)
+        saturate(180%);
+
+    transform:
+        translateZ(0);
+
+    will-change:transform;
+}
+
+
+/* =========================================================
+   PROFILE IMAGE
+========================================================= */
+
+.avatar img{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    object-position:center;
+
+    display:block;
+
+    border-radius:50%;
+
+    opacity:.94;
+}
+
+
+/* =========================================================
+   STATIC GLASS REFLECTION
+   NO ANIMATION
+========================================================= */
+
+.avatar::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:2;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.25),
+            rgba(255,255,255,.04) 35%,
+            transparent 60%
+        );
+
+    box-shadow:
+        inset
+        0 1px 2px
+        rgba(255,255,255,.32);
+}
+
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+h1{
+
+    font-size:
+        clamp(40px,8vw,60px);
+
+    line-height:.95;
+
+    letter-spacing:
+        -.065em;
+
+    font-weight:650;
+
+    color:
+        rgba(255,255,255,.96);
+}
+
+
+.role{
+
+    margin-top:13px;
+
+    font-size:13px;
+
+    color:
+        rgba(205,215,230,.68);
+}
+
+
+.description{
+
+    max-width:470px;
+
+    margin:
+        14px auto 0;
+
+    font-size:12px;
+
+    line-height:1.7;
+
+    color:
+        rgba(185,197,216,.54);
+}
+
+
+/* =========================================================
+   LINKS
+========================================================= */
+
+.links{
+
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:12px;
+}
+
+
+/* =========================================================
+   GLASS BUTTON
+========================================================= */
+
+.glass{
+
+    --x:50%;
+    --y:50%;
+
+    position:relative;
+
+    min-height:76px;
+
+    padding:
+        0 17px;
+
+    display:flex;
+
+    align-items:center;
+
+    text-decoration:none;
+
+    color:white;
+
+    overflow:hidden;
+
+    border-radius:22px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.16);
+
+    background:
+
+        radial-gradient(
+            circle at var(--x) var(--y),
+            rgba(130,195,255,.15),
+            transparent 42%
+        ),
+
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.105),
+            rgba(255,255,255,.035)
+        );
+
+    backdrop-filter:
+        blur(24px)
+        saturate(180%);
+
+    -webkit-backdrop-filter:
+        blur(24px)
+        saturate(180%);
+
+    box-shadow:
+
+        inset
+        0 1px 1px
+        rgba(255,255,255,.24),
+
+        inset
+        0 -1px 1px
+        rgba(0,0,0,.22),
+
+        0 15px 40px
+        rgba(0,0,0,.25);
+
+    transform:
+        translateZ(0);
+
+    will-change:transform;
+
+    transition:
+        transform .22s ease,
+        border-color .22s ease,
+        background .22s ease,
+        box-shadow .22s ease;
+}
+
+
+/* =========================================================
+   BUTTON SHINE
+========================================================= */
+
+.glass .shine{
+
+    position:absolute;
+
+    top:-150%;
+    left:-80%;
+
+    width:35%;
+    height:400%;
+
+    transform:
+        rotate(24deg);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.25),
+            rgba(160,220,255,.08),
+            transparent
+        );
+
+    filter:blur(7px);
+
+    pointer-events:none;
+
+    transition:
+        left .7s cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.icon{
+
+    width:42px;
+    height:42px;
+
+    flex:0 0 42px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:14px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.13);
+
+    background:
+        rgba(255,255,255,.065);
+
+    box-shadow:
+        inset
+        0 1px 1px
+        rgba(255,255,255,.16);
+
+    backdrop-filter:
+        blur(15px);
+
+    -webkit-backdrop-filter:
+        blur(15px);
+}
+
+
+.icon svg{
+
+    width:19px;
+    height:19px;
+
+    stroke:
+        rgba(255,255,255,.88);
+
+    stroke-width:1.7;
+
+    fill:none;
+
+    stroke-linecap:round;
+
+    stroke-linejoin:round;
+}
+
+
+/* =========================================================
+   BUTTON TEXT
+========================================================= */
+
+.button-text{
+
+    margin-left:13px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+}
+
+
+.title{
+
+    font-size:13px;
+
+    font-weight:600;
+}
+
+
+.subtitle{
+
+    font-size:10px;
+
+    color:
+        rgba(190,202,220,.55);
+}
+
+
+.arrow{
+
+    margin-left:auto;
+
+    color:
+        rgba(255,255,255,.3);
+
+    font-size:20px;
+
+    transition:
+        transform .22s ease,
+        color .22s ease;
+}
+
+
+/* =========================================================
+   BUTTON HOVER
+========================================================= */
+
+.glass:hover{
+
+    border-color:
+        rgba(255,255,255,.28);
+
+    transform:
+        translateY(-3px)
+        scale(1.008);
+
+    background:
+
+        radial-gradient(
+            circle at var(--x) var(--y),
+            rgba(120,200,255,.19),
+            transparent 45%
+        ),
+
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.13),
+            rgba(255,255,255,.045)
+        );
+
+    box-shadow:
+
+        inset
+        0 1px 1px
+        rgba(255,255,255,.3),
+
+        0 20px 50px
+        rgba(0,0,0,.34),
+
+        0 0 35px
+        rgba(70,150,255,.07);
+}
+
+
+.glass:hover .shine{
+
+    left:160%;
+}
+
+
+.glass:hover .arrow{
+
+    transform:
+        translateX(4px);
+
+    color:
+        rgba(255,255,255,.85);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+
+    margin-top:26px;
+
+    font-size:9px;
+
+    color:
+        rgba(180,190,205,.4);
+}
+
+
+.status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+}
+
+
+.dot{
+
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+
+    background:
+        #7faaff;
+
+    box-shadow:
+        0 0 12px
+        rgba(80,150,255,.8);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    body{
+        overflow:hidden;
+    }
+
+    .page{
+
+        width:
+            calc(100% - 20px);
+    }
+
+    .hero{
+
+        margin-bottom:24px;
+    }
+
+
+    /* 70px → 95px */
+
+    .avatar{
+
+        width:95px;
+        height:95px;
+
+        margin-bottom:18px;
+    }
+
+    .description{
+
+        max-width:350px;
+
+        font-size:11px;
+    }
+
+    .links{
+
+        grid-template-columns:1fr;
+
+        gap:9px;
+    }
+
+    .glass{
+
+        min-height:65px;
+
+        border-radius:19px;
+    }
+
+    .icon{
+
+        width:38px;
+        height:38px;
+
+        flex-basis:38px;
+    }
+
+    .blob{
+
+        width:85vw;
+        height:85vw;
+    }
+
+    .mouse-light{
+
+        display:none;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    .blob,
+    .color-wave{
+
+        animation:none;
+    }
+
+    *{
+
+        transition:none!important;
+    }
+}
+
+</style>
+
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="line" data-text="welcome to my personal page"></div>
-        <div class="line white" data-text="hosein ranjbar"></div>
+<!-- =======================================================
+     BACKGROUND
+======================================================= -->
 
-        <div class="links">
-            <a href="tel:+989379380848" data-text="call">call</a>
-            <a href="https://codepen.io/hosein-ranjbar-the-typescripter" data-text="codepen">codepen</a>
-            <a href="https://github.com/hosein-ranjbar" target="_blank" data-text="github">github</a>
-            <a href="mailto:hosein.r67@usa.com" data-text="email">email</a>
-            <a href="game.html" data-text="game">game</a>
-            <a href="" data-text="project">project</a>
-        </div>
+<div class="background">
+
+```
+<div class="blob blue"></div>
+
+<div class="blob cyan"></div>
+
+<div class="blob purple"></div>
+
+<div class="blob bottom"></div>
+
+<div class="color-wave"></div>
+
+<div class="noise"></div>
+
+<div class="vignette"></div>
+
+
+</div>
+
+<!-- =======================================================
+     MOUSE LIGHT
+======================================================= -->
+
+<div
+    class="mouse-light"
+    id="mouseLight"
+></div>
+
+<!-- =======================================================
+     MAIN
+======================================================= -->
+
+<main class="page">
+
+<!-- ===================================================
+     HERO
+==================================================== -->
+
+<section class="hero">
+
+
+    <div class="avatar">
+
+        <img
+            src="https://avatars.githubusercontent.com/u/107248189?v=4"
+            alt="Hossein Ranjbar"
+            width="111"
+            height="111"
+        >
+
     </div>
 
-    <script>
-        function explodeAllText() {
-            const all = document.querySelectorAll(".line, .links a");
-            const screenW = window.innerWidth;
-            const screenH = window.innerHeight;
-            all.forEach((el) => {
-                const text = el.getAttribute("data-text");
-                el.innerHTML = "";
-                [...text].forEach((char, i) => {
-                    const span = document.createElement("span");
-                    span.classList.add("char");
-                    const randX = (Math.random() - 0.5) * screenW * 1.1;
-                    const randY = (Math.random() - 0.5) * screenH * 1.1;
-                    const randR = Math.random() * 720 - 360;
 
-                    span.style.setProperty("--x", randX + "px");
-                    span.style.setProperty("--y", randY + "px");
-                    span.style.setProperty("--r", randR + "deg");
-                    span.style.animationDelay = (i * 0.03) + "s";
+    <h1>
+        Hossein Ranjbar
+    </h1>
 
-                    span.textContent = char === " " ? "\u00A0" : char;
-                    el.appendChild(span);
-                });
-            });
 
-            setTimeout(() => {
-                document.querySelectorAll('.links a').forEach((link, index) => {
-                    setTimeout(() => {
-                        link.classList.add('show-border');
-                    }, index * 120);
-                });
-            }, 4500);
-        }
+    <p class="role">
+        
+    </p>
 
-        window.addEventListener('resize', function() {
-            // keep as is
+
+    <p class="description"></p>
+
+
+</section>
+
+
+<!-- ===================================================
+     LINKS
+==================================================== -->
+
+<nav
+    class="links"
+    aria-label="Contact and social links"
+>
+
+
+    <!-- CALL -->
+
+    <a
+        href="tel:+989379380848"
+        class="glass"
+        aria-label="Call Hossein Ranjbar"
+    >
+
+        <span class="shine"></span>
+
+        <span class="icon">
+
+            <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+            >
+
+                <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2
+                    19.79 19.79 0 0 1-8.63-3.07
+                    19.5 19.5 0 0 1-6-6
+                    A19.79 19.79 0 0 1 2.12 4.18
+                    2 2 0 0 1 4.11 2h3
+                    a2 2 0 0 1 2 1.72
+                    12.84 12.84 0 0 0 .7 2.81
+                    2 2 0 0 1-.45 2.11
+                    L8.09 9.91
+                    a16 16 0 0 0 6 6
+                    l1.27-1.27
+                    a2 2 0 0 1 2.11-.45
+                    12.84 12.84 0 0 0 2.81.7
+                    A2 2 0 0 1 22 16.92z"
+                />
+
+            </svg>
+
+        </span>
+
+
+        <span class="button-text">
+
+            <span class="title">
+                Call
+            </span>
+
+            <span class="subtitle">
+                Let's talk
+            </span>
+
+        </span>
+
+
+        <span class="arrow">
+            ›
+        </span>
+
+    </a>
+
+
+
+    <!-- EMAIL -->
+
+    <a
+        href="mailto:hosein.r67@usa.com"
+        class="glass"
+        aria-label="Email Hossein Ranjbar"
+    >
+
+        <span class="shine"></span>
+
+        <span class="icon">
+
+            <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+            >
+
+                <rect
+                    x="3"
+                    y="5"
+                    width="18"
+                    height="14"
+                    rx="2"
+                />
+
+                <path
+                    d="m3 7 9 6 9-6"
+                />
+
+            </svg>
+
+        </span>
+
+
+        <span class="button-text">
+
+            <span class="title">
+                Email
+            </span>
+
+            <span class="subtitle">
+                Send a message
+            </span>
+
+        </span>
+
+
+        <span class="arrow">
+            ›
+        </span>
+
+    </a>
+
+
+
+    <!-- GITHUB -->
+
+    <a
+        href="https://github.com/hosein-ranjbar"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="glass"
+        aria-label="Hossein Ranjbar on GitHub"
+    >
+
+        <span class="shine"></span>
+
+        <span class="icon">
+
+            <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+            >
+
+                <path
+                    d="M15 22v-4
+                    a4.8 4.8 0 0 0-1-3.5
+                    c3 0 6-2 6-5.5
+                    .08-1.25-.4-2.45-1.2-3.4
+                    .28-1.15.28-2.35 0-3.5
+                    0 0-1 0-3.2 1.5
+                    a11.4 11.4 0 0 0-5.6 0
+                    C7.8 2.1 6.8 2.1 6.8 2.1
+                    c-.28 1.15-.28 2.35 0 3.5
+                    A5.5 5.5 0 0 0 5.6 9
+                    c0 3.5 3 5.5 6 5.5
+                    -.39.49-.68 1.05-.85 1.65
+                    -.17.6-.22 1.22-.15 1.85v4"
+                />
+
+                <path
+                    d="M9 18c-4.51 2-5-2-7-2"
+                />
+
+            </svg>
+
+        </span>
+
+
+        <span class="button-text">
+
+            <span class="title">
+                GitHub
+            </span>
+
+            <span class="subtitle">
+                Projects &amp; code
+            </span>
+
+        </span>
+
+
+        <span class="arrow">
+            ›
+        </span>
+
+    </a>
+
+
+
+    <!-- CODEPEN -->
+
+    <a
+        href="https://codepen.io/hosein-ranjbar-the-typescripter"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="glass"
+        aria-label="Hossein Ranjbar on CodePen"
+    >
+
+        <span class="shine"></span>
+
+        <span class="icon">
+
+            <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+            >
+
+                <path
+                    d="m12 2 9 5.5v9L12 22l-9-5.5v-9L12 2z"
+                />
+
+                <path
+                    d="m3 7.5 9 5.5 9-5.5"
+                />
+
+                <path
+                    d="M12 13v9"
+                />
+
+                <path
+                    d="m3 16.5 9-5.5 9 5.5"
+                />
+
+                <path
+                    d="M12 2v5.5"
+                />
+
+            </svg>
+
+        </span>
+
+
+        <span class="button-text">
+
+            <span class="title">
+                CodePen
+            </span>
+
+            <span class="subtitle">
+                Experiments &amp; demos
+            </span>
+
+        </span>
+
+
+        <span class="arrow">
+            ›
+        </span>
+
+    </a>
+
+
+</nav>
+
+
+<!-- ===================================================
+     FOOTER
+==================================================== -->
+
+<footer class="footer">
+
+    <span class="status">
+
+        <span class="dot"></span>
+
+        
+
+    </span>
+
+</footer>
+
+
+</main>
+
+<script>
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const mouseLight =
+    document.getElementById("mouseLight");
+
+const cards =
+    document.querySelectorAll(".glass");
+
+
+/* =========================================================
+   MOUSE POSITION
+========================================================= */
+
+let mouseX =
+    window.innerWidth / 2;
+
+let mouseY =
+    window.innerHeight / 2;
+
+let currentX =
+    mouseX;
+
+let currentY =
+    mouseY;
+
+
+/* =========================================================
+   POINTER
+========================================================= */
+
+window.addEventListener(
+    "pointermove",
+    e => {
+
+        mouseX =
+            e.clientX;
+
+        mouseY =
+            e.clientY;
+
+
+        cards.forEach(card => {
+
+            const rect =
+                card.getBoundingClientRect();
+
+
+            const x =
+                ((e.clientX - rect.left) /
+                rect.width) * 100;
+
+
+            const y =
+                ((e.clientY - rect.top) /
+                rect.height) * 100;
+
+
+            card.style.setProperty(
+                "--x",
+                x + "%"
+            );
+
+
+            card.style.setProperty(
+                "--y",
+                y + "%"
+            );
+
         });
 
-        window.onload = explodeAllText;
-    </script>
+    },
+    {
+        passive:true
+    }
+);
+
+
+/* =========================================================
+   SMOOTH CURSOR LIGHT
+========================================================= */
+
+function animate(){
+
+    currentX +=
+        (mouseX - currentX) * .16;
+
+    currentY +=
+        (mouseY - currentY) * .16;
+
+
+    mouseLight.style.transform =
+        `translate3d(
+            ${currentX}px,
+            ${currentY}px,
+            0
+        ) translate3d(-50%,-50%,0)`;
+
+
+    requestAnimationFrame(
+        animate
+    );
+}
+
+
+animate();
+
+
+/* =========================================================
+   CARD MAGNETIC MOTION
+========================================================= */
+
+if(
+    window.matchMedia(
+        "(pointer:fine)"
+    ).matches
+){
+
+    cards.forEach(card => {
+
+        card.addEventListener(
+            "pointermove",
+            e => {
+
+                const rect =
+                    card.getBoundingClientRect();
+
+
+                const px =
+                    (e.clientX - rect.left) /
+                    rect.width -
+                    .5;
+
+
+                const py =
+                    (e.clientY - rect.top) /
+                    rect.height -
+                    .5;
+
+
+                card.style.transform =
+                    `translate3d(
+                        ${px * 5}px,
+                        ${py * 4 - 3}px,
+                        0
+                    ) scale(1.008)`;
+
+            },
+            {
+                passive:true
+            }
+        );
+
+
+        card.addEventListener(
+            "pointerleave",
+            () => {
+
+                card.style.transform =
+                    "translate3d(0,0,0) scale(1)";
+
+            }
+        );
+
+    });
+
+}
+
+</script>
 
 </body>
-
 </html>
