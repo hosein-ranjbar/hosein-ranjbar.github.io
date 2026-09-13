@@ -1,0 +1,11 @@
+{
+  "s1": { "sum": 12, "count": 3 },
+  "s2": { "sum": 8, "count": 2 },
+  "s3": { "sum": 18, "count": 4 },
+  "s4": { "sum": 9, "count": 2 },
+  "s5": { "sum": 5, "count": 1 },
+  "s6": { "sum": 14, "count": 3 },
+  "s7": { "sum": 10, "count": 2 },
+  "s8": { "sum": 7, "count": 2 },
+  "s9": { "sum": 16, "count": 4 }
+}
