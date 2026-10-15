@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  
+  <!-- SEO -->
+  <title>ساخت لینک پرداخت بله‌پی | درگاه پرداخت بله</title>
+  <meta name="description" content="ابزار آنلاین و رایگان ساخت لینک پرداخت بله‌پی. با وارد کردن مبلغ، لینک فاکتور درگاه پرداخت بله بسازید و برای مشتری ارسال کنید. مناسب فروشگاه‌ها و ربات‌های بله." />
+  <meta name="keywords" content="بله پی, درگاه پرداخت بله, ساخت لینک پرداخت بله, درگاه بله پی, پرداخت با بله, لینک پرداخت بله‌پی, فاکتور بله, درگاه پرداخت بدون اینماد, بله پی ووکامرس, ساخت فاکتور بله" />
+  <meta name="author" content="Hossein Ranjbar" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://hosseinranjbar.ir" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="ساخت لینک پرداخت بله‌پی | درگاه پرداخت بله" />
+  <meta property="og:description" content="ابزار رایگان ساخت لینک پرداخت بله‌پی. مبلغ را وارد کنید و لینک فاکتور را دریافت کنید." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fa_IR" />
+  <meta property="og:site_name" content="ساخت لینک بله‌پی" />
+
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --card: #ffffff;
+      --text: #1d1d1f;
+      --secondary: #86868b;
+      --blue: #0071e3;
+      --blue-hover: #0077ed;
+      --green: #34c759;
+      --red: #ff3b30;
+      --yellow: #ffcc00;
+      --border: rgba(0,0,0,0.08);
+      --shadow: 0 4px 24px rgba(0,0,0,0.06);
+      --input-bg: #fafafa;
+      --radius: 18px;
+      --radius-sm: 12px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #000000;
+      --card: #111111;
+      --text: #f5f5f7;
+      --secondary: #98989d;
+      --blue: #0a84ff;
+      --blue-hover: #409cff;
+      --green: #30d158;
+      --red: #ff453a;
+      --yellow: #ffd60a;
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 4px 24px rgba(0,0,0,0.4);
+      --input-bg: #1c1c1e;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px 60px;
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .container { width: 100%; max-width: 420px; position: relative; }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 36px 28px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .progress {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .progress-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .progress-dot.active {
+      background: var(--blue);
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    .progress-dot.done { background: var(--green); }
+
+    .header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .header h1 {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      margin-bottom: 6px;
+    }
+
+    .header p {
+      font-size: 14px;
+      color: var(--secondary);
+    }
+
+    .step { display: none; animation: fadeIn 0.3s ease; }
+    .step.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-group { margin-bottom: 20px; }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--secondary);
+      margin-bottom: 8px;
+      padding-right: 2px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 16px;
+      font-family: inherit;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--input-bg);
+      color: var(--text);
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--blue);
+      background: var(--card);
+      box-shadow: 0 0 0 3px rgba(10,132,255,0.15);
+    }
+
+    .amount-wrapper { position: relative; }
+    .amount-wrapper::after {
+      content: 'تومان';
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      color: var(--secondary);
+      pointer-events: none;
+    }
+    .amount-wrapper input {
+      padding-left: 60px;
+      direction: ltr;
+      text-align: left;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .amount-words {
+      margin-top: 12px;
+      padding: 14px 16px;
+      background: rgba(10,132,255,0.08);
+      border: 1px solid rgba(10,132,255,0.12);
+      border-radius: var(--radius-sm);
+      text-align: center;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--blue);
+      line-height: 1.6;
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .amount-words.empty {
+      background: var(--input-bg);
+      border-color: var(--border);
+      color: var(--secondary);
+      font-weight: 400;
+      font-size: 13px;
+    }
+
+    textarea {
+      resize: none;
+      min-height: 90px;
+      direction: rtl;
+      text-align: right;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: inherit;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--blue-hover); }
+    .btn-primary:active { transform: scale(0.98); }
+    .btn-primary:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--blue);
+      border: 1px solid var(--border);
+      margin-top: 10px;
+    }
+    .btn-secondary:hover { background: rgba(10,132,255,0.08); }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .btn-row .btn { flex: 1; }
+
+    .btn-back {
+      background: var(--input-bg);
+      color: var(--text);
+    }
+    .btn-back:hover { opacity: 0.85; }
+
+    /* Theme Toggle */
+    .theme-btn {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 50%;
+      color: var(--secondary);
+      transition: all 0.2s;
+      z-index: 10;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .theme-btn:hover {
+      background: rgba(128,128,128,0.12);
+      color: var(--text);
+    }
+    .theme-btn svg { width: 20px; height: 20px; }
+    .theme-btn .icon-sun { display: none; }
+    [data-theme="dark"] .theme-btn .icon-moon { display: none; }
+    [data-theme="dark"] .theme-btn .icon-sun { display: block; }
+
+    /* Confirm Notification */
+    .confirm-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      padding: 20px;
+    }
+    .confirm-overlay.show { display: flex; }
+
+    .confirm-box {
+      background: var(--card);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 340px;
+      padding: 28px 24px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.25);
+      text-align: center;
+      animation: popIn 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.92); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .confirm-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--yellow), #ffd60a);
+    }
+
+    .confirm-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--yellow);
+      margin: 0 auto 16px;
+      box-shadow: 0 0 0 4px rgba(255,204,0,0.18);
+    }
+
+    .confirm-box h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .confirm-box .confirm-amount {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--blue);
+      margin: 12px 0 4px;
+      direction: ltr;
+    }
+
+    .confirm-box .confirm-words {
+      font-size: 13px;
+      color: var(--secondary);
+      margin-bottom: 22px;
+      line-height: 1.5;
+    }
+
+    .confirm-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .confirm-actions .btn {
+      flex: 1;
+      padding: 14px;
+      font-size: 15px;
+    }
+
+    .btn-reject {
+      background: transparent;
+      color: var(--red);
+      border: 1px solid rgba(255,69,58,0.3);
+    }
+    .btn-reject:hover {
+      background: rgba(255,69,58,0.08);
+    }
+
+    .btn-accept {
+      background: var(--blue);
+      color: #fff;
+    }
+    .btn-accept:hover { background: var(--blue-hover); }
+
+    /* Result */
+    .result-box {
+      background: rgba(10,132,255,0.08);
+      border: 1px solid rgba(10,132,255,0.15);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .result-box .success-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+    }
+
+    .result-box h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .result-box .amount-display {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--blue);
+      margin: 12px 0 4px;
+      direction: ltr;
+    }
+
+    .result-box .amount-words-result {
+      font-size: 13px;
+      color: var(--secondary);
+      margin-bottom: 12px;
+    }
+
+    .link-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      margin: 16px 0;
+      word-break: break-all;
+      font-size: 13px;
+      color: var(--blue);
+      direction: ltr;
+      text-align: left;
+      line-height: 1.5;
+      user-select: all;
+    }
+
+    .copy-btn {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .copy-btn:hover { background: var(--blue-hover); }
+    .copy-btn.copied { background: var(--green); }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .summary-item:last-child { border-bottom: none; }
+    .summary-item span:first-child { color: var(--secondary); }
+    .summary-item span:last-child { font-weight: 500; text-align: left; }
+
+    /* Settings Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 16px;
+    }
+    .modal-overlay.show { display: flex; }
+
+    .modal {
+      background: var(--card);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 400px;
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .modal .form-group { margin-bottom: 16px; }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .modal-actions .btn { flex: 1; padding: 14px; font-size: 14px; }
+
+    .btn-cancel {
+      background: var(--input-bg);
+      color: var(--text);
+    }
+    .btn-cancel:hover { opacity: 0.85; }
+
+    .status {
+      text-align: center;
+      font-size: 13px;
+      margin-top: 14px;
+      min-height: 20px;
+    }
+    .status.error { color: var(--red); }
+    .status.success { color: var(--green); }
+    .status.loading { color: var(--secondary); }
+
+    .hint {
+      font-size: 12px;
+      color: var(--secondary);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    input[type="text"][dir="ltr"] {
+      direction: ltr;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    /* Dev Button - minimal & stylish */
+    .dev-link {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--secondary);
+      text-decoration: none;
+      letter-spacing: 0.4px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      transition: all 0.2s ease;
+      opacity: 0.7;
+      z-index: 50;
+    }
+    .dev-link:hover {
+      opacity: 1;
+      color: var(--text);
+      border-color: var(--secondary);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Theme Toggle (Day / Night) -->
+    <button class="theme-btn" onclick="toggleTheme()" title="تغییر تم" aria-label="تغییر تم روز و شب">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+    </button>
+
+    <div class="card">
+      <div class="progress" id="progress">
+        <div class="progress-dot active" data-step="1"></div>
+        <div class="progress-dot" data-step="2"></div>
+        <div class="progress-dot" data-step="3"></div>
+        <div class="progress-dot" data-step="4"></div>
+      </div>
+
+      <!-- Step 1: Amount -->
+      <div class="step active" id="step1">
+        <div class="header">
+          <h1>مبلغ پرداخت</h1>
+          <p>مبلغ مورد نظر را به تومان وارد کنید</p>
+        </div>
+        <div class="form-group">
+          <label for="amount">مبلغ (تومان)</label>
+          <div class="amount-wrapper">
+            <input type="text" id="amount" placeholder="۰" inputmode="numeric" autocomplete="off" />
+          </div>
+          <div class="amount-words empty" id="amountWords">مبلغ به حروف اینجا نمایش داده می‌شود</div>
+        </div>
+        <button class="btn btn-primary" id="btnStep1" onclick="showConfirm()" disabled>ادامه</button>
+        <div class="status" id="status1"></div>
+      </div>
+
+      <!-- Step 2: Title & Description -->
+      <div class="step" id="step2">
+        <div class="header">
+          <h1>جزئیات فاکتور</h1>
+          <p>عنوان و توضیح کوتاه وارد کنید</p>
+        </div>
+        <div class="form-group">
+          <label for="title">عنوان فاکتور</label>
+          <input type="text" id="title" placeholder="پرداخت سفارش" style="direction:rtl;text-align:right;" />
+        </div>
+        <div class="form-group">
+          <label for="description">توضیحات (اختیاری)</label>
+          <textarea id="description" placeholder="توضیح کوتاه برای مشتری..."></textarea>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-back" onclick="goToStep(1)">قبلی</button>
+          <button class="btn btn-primary" onclick="goToStep(3)">ادامه</button>
+        </div>
+        <div class="status" id="status2"></div>
+      </div>
+
+      <!-- Step 3: Confirm -->
+      <div class="step" id="step3">
+        <div class="header">
+          <h1>تأیید اطلاعات</h1>
+          <p>جزئیات را بررسی کنید و لینک بسازید</p>
+        </div>
+        <div style="margin-bottom:20px;">
+          <div class="summary-item">
+            <span>مبلغ</span>
+            <span id="summaryAmount">—</span>
+          </div>
+          <div class="summary-item">
+            <span>به حروف</span>
+            <span id="summaryWords" style="font-size:13px;">—</span>
+          </div>
+          <div class="summary-item">
+            <span>عنوان</span>
+            <span id="summaryTitle">—</span>
+          </div>
+          <div class="summary-item">
+            <span>توضیحات</span>
+            <span id="summaryDesc">—</span>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-back" onclick="goToStep(2)">قبلی</button>
+          <button class="btn btn-primary" id="generateBtn" onclick="generateLink()">ساخت لینک</button>
+        </div>
+        <div class="status" id="status3"></div>
+      </div>
+
+      <!-- Step 4: Result -->
+      <div class="step" id="step4">
+        <div class="result-box">
+          <div class="success-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <h3>لینک پرداخت آماده است</h3>
+          <div class="amount-display" id="resultAmount"></div>
+          <div class="amount-words-result" id="resultWords"></div>
+          <div class="link-box" id="paymentLink"></div>
+          <button class="copy-btn" id="copyBtn" onclick="copyLink()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            کپی لینک
+          </button>
+        </div>
+        <button class="btn btn-secondary" onclick="resetForm()">ساخت لینک جدید</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dev Link -->
+  <a href="https://hosseinranjbar.ir" target="_blank" rel="noopener" class="dev-link">dev</a>
+
+  <!-- Confirm Amount Notification -->
+  <div class="confirm-overlay" id="confirmOverlay">
+    <div class="confirm-box">
+      <div class="confirm-dot"></div>
+      <h3>تأیید مبلغ</h3>
+      <div class="confirm-amount" id="confirmAmountNum"></div>
+      <div class="confirm-words" id="confirmAmountWords"></div>
+      <div class="confirm-actions">
+        <button class="btn btn-reject" onclick="closeConfirm()">رد</button>
+        <button class="btn btn-accept" onclick="acceptAmount()">تأیید</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="modal-overlay" id="settingsModal">
+    <div class="modal">
+      <h2>تنظیمات بله‌پی</h2>
+      <div class="form-group">
+        <label for="botToken">توکن ربات (Bot Token)</label>
+        <input type="text" id="botToken" placeholder="123456:ABC-DEF..." dir="ltr" />
+        <p class="hint">از BotFather در بله دریافت کنید</p>
+      </div>
+      <div class="form-group">
+        <label for="providerToken">توکن پرداخت (Provider Token)</label>
+        <input type="text" id="providerToken" placeholder="WALLET-..." dir="ltr" />
+        <p class="hint">توکن پذیرندگی پرداخت بله‌پی</p>
+      </div>
+      <div class="form-group">
+        <label for="defaultTitle">عنوان پیش‌فرض فاکتور</label>
+        <input type="text" id="defaultTitle" value="پرداخت سفارش" style="direction:rtl;text-align:right;" />
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-cancel" onclick="closeSettings()">انصراف</button>
+        <button type="button" class="btn btn-primary" onclick="saveSettings()">ذخیره</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'bale_pay_settings';
+    const THEME_KEY = 'bale_pay_theme';
+    let currentStep = 1;
+    let formData = { amount: 0, title: '', description: '', words: '' };
+    let pendingAmount = 0;
+    let pendingWords = '';
+
+    // ---------- Theme ----------
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem(THEME_KEY, theme);
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    }
+
+    (function() {
+      const saved = localStorage.getItem(THEME_KEY);
+      if (saved) {
+        applyTheme(saved);
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        applyTheme('dark');
+      }
+    })();
+
+    // ---------- Number to Persian Words ----------
+    const ones = ['', 'یک', 'دو', 'سه', 'چهار', 'پنج', 'شش', 'هفت', 'هشت', 'نه'];
+    const tens = ['', 'ده', 'بیست', 'سی', 'چهل', 'پنجاه', 'شصت', 'هفتاد', 'هشتاد', 'نود'];
+    const teens = ['ده', 'یازده', 'دوازده', 'سیزده', 'چهارده', 'پانزده', 'شانزده', 'هفده', 'هجده', 'نوزده'];
+    const hundreds = ['', 'یکصد', 'دویست', 'سیصد', 'چهارصد', 'پانصد', 'ششصد', 'هفتصد', 'هشتصد', 'نهصد'];
+    const scales = ['', 'هزار', 'میلیون', 'میلیارد', 'تریلیون'];
+
+    function threeDigitsToWords(n) {
+      if (n === 0) return '';
+      const h = Math.floor(n / 100);
+      const t = Math.floor((n % 100) / 10);
+      const o = n % 10;
+      let parts = [];
+      if (h) parts.push(hundreds[h]);
+      if (t === 1) {
+        parts.push(teens[o]);
+      } else {
+        if (t) parts.push(tens[t]);
+        if (o) parts.push(ones[o]);
+      }
+      return parts.join(' و ');
+    }
+
+    function numberToPersianWords(num) {
+      if (num === 0) return 'صفر';
+      if (num < 0) return 'منفی ' + numberToPersianWords(-num);
+      let parts = [];
+      let scaleIndex = 0;
+      while (num > 0) {
+        const chunk = num % 1000;
+        if (chunk) {
+          let chunkWords = threeDigitsToWords(chunk);
+          if (scales[scaleIndex]) chunkWords += ' ' + scales[scaleIndex];
+          parts.unshift(chunkWords);
+        }
+        num = Math.floor(num / 1000);
+        scaleIndex++;
+      }
+      return parts.join(' و ');
+    }
+
+    function formatNumber(value) {
+      const digits = value.replace(/\D/g, '');
+      if (!digits) return '';
+      return Number(digits).toLocaleString('en-US');
+    }
+
+    function getRawNumber(formatted) {
+      return parseInt(formatted.replace(/\D/g, ''), 10) || 0;
+    }
+
+    // ---------- Amount input ----------
+    const amountInput = document.getElementById('amount');
+    const amountWordsEl = document.getElementById('amountWords');
+    const btnStep1 = document.getElementById('btnStep1');
+
+    amountInput.addEventListener('input', function() {
+      const cursorPos = this.selectionStart;
+      const oldLen = this.value.length;
+      const raw = getRawNumber(this.value);
+      this.value = formatNumber(String(raw || ''));
+      const newLen = this.value.length;
+      const diff = newLen - oldLen;
+      this.setSelectionRange(Math.max(0, cursorPos + diff), Math.max(0, cursorPos + diff));
+      updateAmountWords(raw);
+    });
+
+    function updateAmountWords(raw) {
+      if (!raw || raw < 1) {
+        amountWordsEl.textContent = 'مبلغ به حروف اینجا نمایش داده می‌شود';
+        amountWordsEl.classList.add('empty');
+        btnStep1.disabled = true;
+        return;
+      }
+      const words = numberToPersianWords(raw) + ' تومان';
+      amountWordsEl.textContent = words;
+      amountWordsEl.classList.remove('empty');
+      btnStep1.disabled = raw < 1000;
+    }
+
+    // ---------- Confirm Notification ----------
+    function showConfirm() {
+      const raw = getRawNumber(amountInput.value);
+      if (!raw || raw < 1000) {
+        showStatus('status1', 'مبلغ باید حداقل ۱٬۰۰۰ تومان باشد', 'error');
+        return;
+      }
+      pendingAmount = raw;
+      pendingWords = numberToPersianWords(raw) + ' تومان';
+      document.getElementById('confirmAmountNum').textContent = raw.toLocaleString('fa-IR') + ' تومان';
+      document.getElementById('confirmAmountWords').textContent = pendingWords;
+      document.getElementById('confirmOverlay').classList.add('show');
+    }
+
+    function closeConfirm() {
+      document.getElementById('confirmOverlay').classList.remove('show');
+    }
+
+    function acceptAmount() {
+      formData.amount = pendingAmount;
+      formData.words = pendingWords;
+      closeConfirm();
+      goToStep(2);
+    }
+
+    // ---------- Storage ----------
+    function loadSettings() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) return JSON.parse(raw);
+      } catch (e) {}
+      return { botToken: '', providerToken: '', defaultTitle: 'پرداخت سفارش' };
+    }
+
+    function saveSettingsToStorage(settings) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+    }
+
+    // ---------- Steps ----------
+    function goToStep(step) {
+      if (step === 3) {
+        const title = document.getElementById('title').value.trim();
+        if (!title) {
+          showStatus('status2', 'عنوان فاکتور را وارد کنید', 'error');
+          return;
+        }
+        formData.title = title;
+        formData.description = document.getElementById('description').value.trim() || title;
+
+        document.getElementById('summaryAmount').textContent = formData.amount.toLocaleString('fa-IR') + ' تومان';
+        document.getElementById('summaryWords').textContent = formData.words;
+        document.getElementById('summaryTitle').textContent = formData.title;
+        document.getElementById('summaryDesc').textContent = formData.description || '—';
+      }
+
+      document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+      document.getElementById('step' + step).classList.add('active');
+
+      document.querySelectorAll('.progress-dot').forEach(dot => {
+        const s = parseInt(dot.dataset.step);
+        dot.classList.remove('active', 'done');
+        if (s === step) dot.classList.add('active');
+        else if (s < step) dot.classList.add('done');
+      });
+
+      currentStep = step;
+    }
+
+    function showStatus(id, msg, type) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.textContent = msg;
+      el.className = 'status ' + (type || '');
+      if (type === 'success' || type === 'error') {
+        setTimeout(() => { el.textContent = ''; el.className = 'status'; }, 4000);
+      }
+    }
+
+    // ---------- Generate Link ----------
+    async function generateLink() {
+      const settings = loadSettings();
+      if (!settings.botToken || !settings.providerToken) {
+        showStatus('status3', 'ابتدا تنظیمات را تکمیل کنید', 'error');
+        openSettings();
+        return;
+      }
+
+      const btn = document.getElementById('generateBtn');
+      btn.disabled = true;
+      btn.textContent = 'در حال ساخت...';
+      showStatus('status3', 'در حال ارتباط با سرور بله...', 'loading');
+
+      const amountRial = formData.amount * 10;
+      const payload = 'order_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+
+      try {
+        const apiUrl = `https://tapi.bale.ai/bot${settings.botToken}/createInvoiceLink`;
+        const body = {
+          title: formData.title,
+          description: formData.description,
+          payload: payload,
+          provider_token: settings.providerToken,
+          currency: 'IRR',
+          prices: [{ label: formData.title, amount: amountRial }]
+        };
+
+        const res = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+
+        const data = await res.json();
+
+        if (data.ok && data.result) {
+          document.getElementById('resultAmount').textContent = formData.amount.toLocaleString('fa-IR') + ' تومان';
+          document.getElementById('resultWords').textContent = formData.words;
+          document.getElementById('paymentLink').textContent = data.result;
+          goToStep(4);
+        } else {
+          showStatus('status3', 'خطا: ' + (data.description || JSON.stringify(data)), 'error');
+        }
+      } catch (err) {
+        showStatus('status3', 'خطا در ارتباط: ' + err.message, 'error');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'ساخت لینک';
+      }
+    }
+
+    function copyLink() {
+      const link = document.getElementById('paymentLink').textContent;
+      const btn = document.getElementById('copyBtn');
+      navigator.clipboard.writeText(link).then(() => {
+        btn.classList.add('copied');
+        btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> کپی شد!`;
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> کپی لینک`;
+        }, 2000);
+      }).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = link;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        btn.classList.add('copied');
+        btn.textContent = 'کپی شد!';
+        setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = 'کپی لینک'; }, 2000);
+      });
+    }
+
+    function resetForm() {
+      formData = { amount: 0, title: '', description: '', words: '' };
+      amountInput.value = '';
+      updateAmountWords(0);
+      document.getElementById('title').value = loadSettings().defaultTitle || 'پرداخت سفارش';
+      document.getElementById('description').value = '';
+      goToStep(1);
+    }
+
+    // ---------- Settings ----------
+    function openSettings() {
+      const s = loadSettings();
+      document.getElementById('botToken').value = s.botToken || '';
+      document.getElementById('providerToken').value = s.providerToken || '';
+      document.getElementById('defaultTitle').value = s.defaultTitle || 'پرداخت سفارش';
+      document.getElementById('settingsModal').classList.add('show');
+    }
+
+    function closeSettings() {
+      document.getElementById('settingsModal').classList.remove('show');
+    }
+
+    function saveSettings() {
+      const settings = {
+        botToken: document.getElementById('botToken').value.trim(),
+        providerToken: document.getElementById('providerToken').value.trim(),
+        defaultTitle: document.getElementById('defaultTitle').value.trim() || 'پرداخت سفارش'
+      };
+      saveSettingsToStorage(settings);
+      document.getElementById('title').value = settings.defaultTitle;
+      closeSettings();
+    }
+
+    // Long-press theme button to open settings
+    let pressTimer;
+    const themeBtn = document.querySelector('.theme-btn');
+    themeBtn.addEventListener('mousedown', () => { pressTimer = setTimeout(openSettings, 800); });
+    themeBtn.addEventListener('mouseup', () => clearTimeout(pressTimer));
+    themeBtn.addEventListener('mouseleave', () => clearTimeout(pressTimer));
+    themeBtn.addEventListener('touchstart', () => { pressTimer = setTimeout(openSettings, 800); }, { passive: true });
+    themeBtn.addEventListener('touchend', () => clearTimeout(pressTimer));
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const s = loadSettings();
+      if (s.defaultTitle) document.getElementById('title').value = s.defaultTitle;
+    });
+
+    document.getElementById('settingsModal').addEventListener('click', function(e) {
+      if (e.target === this) closeSettings();
+    });
+
+    document.getElementById('confirmOverlay').addEventListener('click', function(e) {
+      if (e.target === this) closeConfirm();
+    });
+  </script>
+</body>
+</html>
