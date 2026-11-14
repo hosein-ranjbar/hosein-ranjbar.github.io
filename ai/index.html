@@ -1,0 +1,871 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7f8fc">
+<meta name="description" content="دستیار هوش مصنوعی تی تی موبایل">
+<title>دستیار هوش مصنوعی تی تی موبایل</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+
+:root {
+  color-scheme: light;
+  --bg:#f7f8fc;
+  --surface:#fff;
+  --surface2:#f0f1f6;
+  --text:#202124;
+  --muted:#858995;
+  --border:rgba(30,35,50,.09);
+  --accent:#6478ed;
+  --accent2:#9874e9;
+  --shadow:0 10px 40px rgba(30,40,80,.06);
+}
+
+[data-theme="dark"] {
+  color-scheme:dark;
+  --bg:#101116;
+  --surface:#191a21;
+  --surface2:#24252e;
+  --text:#f1f1f5;
+  --muted:#999ba9;
+  --border:rgba(255,255,255,.09);
+  --accent:#8c9bff;
+  --accent2:#b18cf4;
+  --shadow:0 10px 40px rgba(0,0,0,.2);
+}
+
+* {
+  box-sizing:border-box;
+}
+
+body {
+  margin:0;
+  font-family:'Vazirmatn',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  transition:background .3s,color .3s;
+}
+
+button,textarea {
+  font:inherit;
+}
+
+button {
+  -webkit-tap-highlight-color:transparent;
+}
+
+.app {
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  max-width:1500px;
+  margin:auto;
+}
+
+/* Header */
+
+header {
+  height:75px;
+  padding:0 30px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--border);
+  background:var(--bg);
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:16px;
+  font-weight:800;
+}
+
+.logo {
+  width:40px;
+  height:40px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  color:white;
+  font-size:22px;
+  background:linear-gradient(135deg,#6e83f5,#a16de5);
+  box-shadow:0 5px 15px #7886ef44;
+  flex-shrink:0;
+}
+
+.header-actions {
+  display:flex;
+  gap:10px;
+}
+
+.icon-btn {
+  width:42px;
+  height:42px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  color:var(--text);
+  background:var(--surface);
+  cursor:pointer;
+  font-size:19px;
+  transition:.2s;
+}
+
+.icon-btn:hover {
+  transform:translateY(-2px);
+  background:var(--surface2);
+}
+
+/* Main */
+
+main {
+  flex:1;
+  width:100%;
+  max-width:920px;
+  margin:0 auto;
+  padding:45px 25px 20px;
+  display:flex;
+  flex-direction:column;
+}
+
+/* Welcome */
+
+.welcome {
+  margin:auto;
+  width:100%;
+  text-align:center;
+  padding:35px 0 55px;
+}
+
+.welcome-icon {
+  width:72px;
+  height:72px;
+  border-radius:24px;
+  margin:0 auto 24px;
+  display:grid;
+  place-items:center;
+  font-size:34px;
+  color:white;
+  background:linear-gradient(135deg,#6e83f5,#a16de5);
+  box-shadow:0 10px 35px #7886ef35;
+}
+
+.welcome h1 {
+  font-size:clamp(24px,5vw,37px);
+  margin:0 0 14px;
+  font-weight:800;
+  letter-spacing:-1px;
+  line-height:1.8;
+}
+
+.gradient-text {
+  background:linear-gradient(90deg,#6380ed,#a36ee5);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.welcome p {
+  color:var(--muted);
+  font-size:14px;
+  line-height:2.2;
+  margin:0;
+}
+
+.suggestions {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:30px;
+}
+
+.suggestion {
+  padding:11px 17px;
+  border-radius:15px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  color:var(--text);
+  font-size:12px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.suggestion:hover {
+  border-color:var(--accent);
+  transform:translateY(-3px);
+}
+
+/* Chat */
+
+.chat {
+  display:flex;
+  flex-direction:column;
+  gap:25px;
+  padding-bottom:25px;
+}
+
+.message {
+  max-width:85%;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  animation:appear .3s ease;
+}
+
+@keyframes appear {
+  from {
+    opacity:0;
+    transform:translateY(9px);
+  }
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.message.user {
+  align-self:flex-start;
+}
+
+.message.ai {
+  align-self:stretch;
+  max-width:100%;
+}
+
+.message-label {
+  font-size:11px;
+  color:var(--muted);
+  padding:0 5px;
+}
+
+.message-body {
+  padding:14px 18px;
+  line-height:2.1;
+  font-size:14px;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  unicode-bidi:plaintext;
+}
+
+.user .message-body {
+  background:var(--surface2);
+  border-radius:18px 5px 18px 18px;
+}
+
+.ai .message-body {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:5px 18px 18px 18px;
+  box-shadow:var(--shadow);
+}
+
+/* Typing */
+
+.typing {
+  display:flex;
+  gap:5px;
+  padding:15px;
+}
+
+.typing span {
+  width:7px;
+  height:7px;
+  background:var(--accent);
+  border-radius:50%;
+  animation:bounce .8s infinite alternate;
+}
+
+.typing span:nth-child(2) {
+  animation-delay:.2s;
+}
+
+.typing span:nth-child(3) {
+  animation-delay:.4s;
+}
+
+@keyframes bounce {
+  to {
+    transform:translateY(-6px);
+    opacity:.4;
+  }
+}
+
+/* Composer */
+
+.composer-wrap {
+  position:sticky;
+  bottom:0;
+  padding:15px 0 12px;
+  background:linear-gradient(transparent,var(--bg) 20%);
+}
+
+.composer {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:23px;
+  padding:13px 15px;
+  box-shadow:var(--shadow);
+  transition:border .2s;
+}
+
+.composer:focus-within {
+  border-color:var(--accent);
+}
+
+#prompt {
+  display:block;
+  width:100%;
+  min-height:50px;
+  max-height:160px;
+  resize:none;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:var(--text);
+  font-size:14px;
+  line-height:1.9;
+  direction:rtl;
+}
+
+#prompt::placeholder {
+  color:var(--muted);
+}
+
+.composer-bottom {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:7px;
+}
+
+.hint {
+  color:var(--muted);
+  font-size:10px;
+}
+
+.send-btn {
+  width:43px;
+  height:43px;
+  border:0;
+  border-radius:15px;
+  color:white;
+  background:linear-gradient(135deg,#687ff0,#9871e5);
+  cursor:pointer;
+  font-size:22px;
+  transition:.2s;
+}
+
+.send-btn:hover {
+  transform:scale(1.06);
+}
+
+.send-btn:disabled {
+  opacity:.4;
+  cursor:not-allowed;
+}
+
+/* Footer */
+
+footer {
+  text-align:center;
+  padding:12px;
+  font-size:10px;
+  color:var(--muted);
+}
+
+/* Mobile */
+
+@media(max-width:600px) {
+  header {
+    height:65px;
+    padding:0 14px;
+  }
+
+  .brand {
+    font-size:13px;
+    gap:9px;
+  }
+
+  .logo {
+    width:36px;
+    height:36px;
+    border-radius:12px;
+  }
+
+  main {
+    padding:25px 14px 10px;
+  }
+
+  .welcome {
+    padding:35px 0;
+  }
+
+  .welcome h1 {
+    font-size:25px;
+  }
+
+  .welcome p {
+    font-size:12px;
+  }
+
+  .suggestion {
+    font-size:11px;
+    padding:10px 12px;
+  }
+
+  .message {
+    max-width:94%;
+  }
+
+  .message-body {
+    font-size:13px;
+  }
+
+  .composer {
+    border-radius:19px;
+    padding:11px;
+  }
+
+  .hint {
+    font-size:9px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation-duration:.01ms!important;
+    transition-duration:.01ms!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+  <div class="brand">
+    <div class="logo">✦</div>
+    <span>دستیار هوش مصنوعی تی تی موبایل</span>
+  </div>
+
+  <div class="header-actions">
+    <button class="icon-btn" id="newChat"
+      title="گفت‌وگوی جدید"
+      aria-label="گفت‌وگوی جدید">＋</button>
+
+    <button class="icon-btn" id="themeBtn"
+      title="تغییر حالت شب و روز"
+      aria-label="تغییر حالت شب و روز">☾</button>
+  </div>
+</header>
+
+<main>
+
+  <section class="welcome" id="welcome">
+
+    <div class="welcome-icon">✦</div>
+
+    <h1>
+      سلام!
+      <span class="gradient-text">
+        به دستیار هوشمند تی تی موبایل خوش اومدی
+      </span>
+    </h1>
+
+    <p>
+      اینجا می‌تونی سؤالاتت رو بپرسی، راهنمایی بگیری
+      و از امکانات دستیار هوشمند استفاده کنی.
+      <br>
+      چطور می‌تونم کمکت کنم؟
+    </p>
+
+    <div class="suggestions">
+      <button class="suggestion">راهنمای خرید گوشی و لوازم جانبی</button>
+      <button class="suggestion">مقایسه محصولات</button>
+      <button class="suggestion">مشاوره خرید هدفون و اسپیکر</button>
+    </div>
+
+  </section>
+
+  <section class="chat" id="chat" aria-live="polite"></section>
+
+  <div class="composer-wrap">
+    <div class="composer">
+
+      <textarea
+        id="prompt"
+        rows="1"
+        placeholder="پیامت رو اینجا بنویس..."
+        aria-label="متن پیام"
+      ></textarea>
+
+      <div class="composer-bottom">
+        <span class="hint">دستیار هوشمند تی تی موبایل</span>
+
+        <button
+          class="send-btn"
+          id="sendBtn"
+          title="ارسال پیام"
+          aria-label="ارسال پیام"
+        >↑</button>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  دستیار هوش مصنوعی تی تی موبایل
+</footer>
+
+</div>
+
+<script>
+
+// ======================================
+// آدرس Webhook تستی n8n
+// ======================================
+
+const WEBHOOK_URL =
+"https://n8nhossein.app.n8n.cloud/webhook-test/8c5ae1c0-f6da-46e8-bef9-d11a70817b1d";
+
+// ======================================
+// متغیرهای برنامه
+// ======================================
+
+const promptBox = document.getElementById("prompt");
+const sendBtn = document.getElementById("sendBtn");
+const chat = document.getElementById("chat");
+const welcome = document.getElementById("welcome");
+const themeBtn = document.getElementById("themeBtn");
+
+let history = [];
+let loading = false;
+
+const sessionId = crypto.randomUUID
+  ? crypto.randomUUID()
+  : Date.now().toString(36) +
+    Math.random().toString(36).slice(2);
+
+// ======================================
+// حالت شب و روز
+// ======================================
+
+function setTheme(theme) {
+
+  document.documentElement.dataset.theme = theme;
+
+  localStorage.setItem("chat-theme", theme);
+
+  themeBtn.textContent =
+    theme === "dark" ? "☀" : "☾";
+
+  document.querySelector(
+    'meta[name="theme-color"]'
+  ).content =
+    theme === "dark" ? "#101116" : "#f7f8fc";
+
+}
+
+setTheme(
+  localStorage.getItem("chat-theme") || "light"
+);
+
+themeBtn.onclick = () => {
+
+  const current =
+    document.documentElement.dataset.theme;
+
+  setTheme(current === "dark" ? "light" : "dark");
+
+};
+
+// ======================================
+// گفتگوی جدید
+// ======================================
+
+document.getElementById("newChat").onclick = () => {
+
+  if (loading) return;
+
+  history = [];
+  chat.innerHTML = "";
+
+  welcome.style.display = "";
+
+  promptBox.value = "";
+  promptBox.style.height = "50px";
+  promptBox.focus();
+
+};
+
+// ======================================
+// پیشنهادهای آماده
+// ======================================
+
+document.querySelectorAll(".suggestion").forEach(btn => {
+
+  btn.onclick = () => {
+
+    if (loading) return;
+
+    promptBox.value = btn.textContent.trim();
+
+    sendMessage();
+
+  };
+
+});
+
+// ======================================
+// نمایش پیام
+// ======================================
+
+function addMessage(type, text) {
+
+  const wrapper = document.createElement("div");
+
+  wrapper.className = "message " + type;
+
+  const label = document.createElement("div");
+
+  label.className = "message-label";
+
+  label.textContent =
+    type === "user"
+      ? "شما"
+      : "دستیار هوشمند تی تی موبایل";
+
+  const body = document.createElement("div");
+
+  body.className = "message-body";
+
+  body.textContent = text;
+
+  wrapper.append(label, body);
+
+  chat.appendChild(wrapper);
+
+  wrapper.scrollIntoView({
+    behavior:"smooth",
+    block:"nearest"
+  });
+
+  return wrapper;
+
+}
+
+// ======================================
+// نمایش وضعیت پردازش
+// ======================================
+
+function addTyping() {
+
+  const wrapper = document.createElement("div");
+
+  wrapper.className = "message ai";
+
+  wrapper.id = "typing";
+
+  const label = document.createElement("div");
+
+  label.className = "message-label";
+
+  label.textContent =
+    "دستیار تی تی موبایل در حال پردازش...";
+
+  const dots = document.createElement("div");
+
+  dots.className = "typing";
+
+  dots.innerHTML =
+    "<span></span><span></span><span></span>";
+
+  wrapper.append(label, dots);
+
+  chat.appendChild(wrapper);
+
+  wrapper.scrollIntoView({
+    behavior:"smooth",
+    block:"nearest"
+  });
+
+}
+
+// ======================================
+// ارسال پیام به n8n
+// ======================================
+
+async function sendMessage() {
+
+  const message = promptBox.value.trim();
+
+  if (!message || loading) return;
+
+  if (message.length > 2000) {
+
+    alert("حداکثر طول پیام ۲۰۰۰ کاراکتر است.");
+
+    return;
+
+  }
+
+  welcome.style.display = "none";
+
+  addMessage("user", message);
+
+  promptBox.value = "";
+
+  promptBox.style.height = "50px";
+
+  loading = true;
+
+  sendBtn.disabled = true;
+
+  addTyping();
+
+  try {
+
+    const response = await fetch(WEBHOOK_URL, {
+
+      method:"POST",
+
+      headers: {
+        "Content-Type":"application/json"
+      },
+
+      body:JSON.stringify({
+
+        message:message,
+
+        sessionId:sessionId,
+
+        history:history
+
+      })
+
+    });
+
+    if (!response.ok) {
+
+      throw new Error(
+        "خطای سرور: " + response.status
+      );
+
+    }
+
+    const data = await response.json();
+
+    const answer =
+      typeof data === "string"
+        ? data
+        : data.output ??
+          data.reply ??
+          data.text ??
+          data.response ??
+          data.message ??
+          data[0]?.output;
+
+    if (
+      answer === undefined ||
+      answer === null ||
+      String(answer).trim() === ""
+    ) {
+
+      throw new Error(
+        "پاسخ معتبر از n8n دریافت نشد."
+      );
+
+    }
+
+    document.getElementById("typing")?.remove();
+
+    const finalAnswer = String(answer);
+
+    addMessage("ai", finalAnswer);
+
+    history.push(
+
+      {
+        role:"user",
+        content:message
+      },
+
+      {
+        role:"assistant",
+        content:finalAnswer
+      }
+
+    );
+
+  } catch(error) {
+
+    document.getElementById("typing")?.remove();
+
+    addMessage(
+      "ai",
+      "متأسفانه در ارتباط با سرور مشکلی پیش آمد.\n" +
+      "لطفاً دوباره تلاش کن.\n\n" +
+      "جزئیات خطا: " + error.message
+    );
+
+  } finally {
+
+    loading = false;
+
+    sendBtn.disabled = false;
+
+    promptBox.focus();
+
+  }
+
+}
+
+// ======================================
+// ارسال پیام با Enter
+// ======================================
+
+sendBtn.onclick = sendMessage;
+
+promptBox.addEventListener("keydown", event => {
+
+  if (
+    event.key === "Enter" &&
+    !event.shiftKey &&
+    !event.isComposing
+  ) {
+
+    event.preventDefault();
+
+    sendMessage();
+
+  }
+
+});
+
+// ======================================
+// تنظیم خودکار ارتفاع کادر پیام
+// ======================================
+
+promptBox.addEventListener("input", () => {
+
+  promptBox.style.height = "auto";
+
+  promptBox.style.height =
+    Math.min(promptBox.scrollHeight, 160) + "px";
+
+});
+
+</script>
+
+</body>
+</html>
