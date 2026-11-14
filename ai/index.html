@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -11,354 +10,92 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap');
 
-:root {
-  color-scheme: light;
-  --bg:#fff;
-  --surface:#fff;
-  --soft:#f5f5f7;
-  --text:#202124;
-  --muted:#85858d;
-  --line:#e9e9ed;
-  --accent:#25252b;
+:root{
+  color-scheme:light;
+  --bg:#fff; --surface:#fff; --soft:#f5f5f7; --text:#202124;
+  --muted:#85858d; --line:#e9e9ed; --accent:#25252b; --link:#2563eb;
 }
-
-[data-theme="dark"] {
+[data-theme="dark"]{
   color-scheme:dark;
-  --bg:#111114;
-  --surface:#19191e;
-  --soft:#24242b;
-  --text:#f2f2f4;
-  --muted:#a0a0aa;
-  --line:#303038;
-  --accent:#f2f2f4;
+  --bg:#111114; --surface:#19191e; --soft:#24242b; --text:#f2f2f4;
+  --muted:#a0a0aa; --line:#303038; --accent:#f2f2f4; --link:#60a5fa;
 }
 
-* {
-  box-sizing:border-box;
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Vazirmatn,sans-serif;min-height:100vh}
+button,textarea{font:inherit}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+
+.app{min-height:100vh;max-width:1100px;margin:auto;display:flex;flex-direction:column}
+
+header{height:66px;padding:0 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.brand{font-size:14px;font-weight:700;display:flex;align-items:center;gap:10px}
+.brand-mark{width:30px;height:30px;border-radius:10px;background:var(--soft);display:grid;place-items:center;font-size:17px}
+.actions{display:flex;gap:8px}
+.icon-btn{width:36px;height:36px;border:1px solid var(--line);border-radius:11px;background:var(--surface);color:var(--text);font-size:18px}
+.icon-btn:hover{background:var(--soft)}
+
+main{width:100%;max-width:780px;flex:1;margin:0 auto;padding:32px 22px 12px;display:flex;flex-direction:column}
+
+.welcome{margin:auto 0;text-align:center;padding:55px 0 65px}
+.welcome[hidden]{display:none}
+.welcome-mark{width:48px;height:48px;margin:0 auto 18px;border-radius:16px;background:var(--soft);display:grid;place-items:center;font-size:24px}
+h1{font-size:clamp(22px,4vw,30px);line-height:1.8;margin:0 0 8px;font-weight:700}
+.welcome p{font-size:13px;color:var(--muted);line-height:2;margin:0}
+
+.suggestions{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:24px}
+.suggestion{border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:12px;padding:9px 13px;font-size:11px}
+.suggestion:hover{background:var(--soft)}
+
+.chat{display:flex;flex-direction:column;gap:22px;padding-bottom:20px}
+.message{max-width:88%;display:flex;flex-direction:column;gap:6px;animation:appear .18s ease}
+.message.user{align-self:flex-start}
+.message.ai{align-self:stretch;max-width:100%}
+.message-label{font-size:10px;color:var(--muted);padding:0 4px}
+.message-body{font-size:13px;line-height:2;white-space:pre-wrap;overflow-wrap:anywhere;unicode-bidi:plaintext}
+.user .message-body{background:var(--soft);padding:10px 14px;border-radius:15px 5px 15px 15px}
+.ai .message-body{padding:2px 4px}
+
+/* لینک «مشاهده محصول» */
+.message-body a{
+  display:inline-block;
+  color:var(--link);
+  font-weight:600;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  unicode-bidi:isolate;
 }
+.message-body a:hover{opacity:.8}
 
-body {
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:Vazirmatn,sans-serif;
-  min-height:100vh;
+.typing{display:flex;gap:5px;padding:8px 4px}
+.typing span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:pulse .7s infinite alternate}
+.typing span:nth-child(2){animation-delay:.15s}
+.typing span:nth-child(3){animation-delay:.3s}
+
+.composer-wrap{position:sticky;bottom:0;padding:12px 0 10px;background:linear-gradient(transparent,var(--bg) 18%)}
+.composer{border:1px solid var(--line);border-radius:18px;background:var(--surface);padding:10px 12px;display:flex;align-items:flex-end;gap:10px}
+.composer:focus-within{border-color:#a5a5ad}
+#prompt{flex:1;min-width:0;min-height:42px;max-height:150px;resize:none;border:0;outline:0;background:transparent;color:var(--text);font-size:13px;line-height:1.9;padding:5px 2px;direction:rtl}
+#prompt::placeholder{color:var(--muted)}
+.send-btn{width:36px;height:36px;flex:0 0 36px;border:0;border-radius:11px;background:var(--accent);color:var(--bg);font-size:20px}
+.send-btn:disabled{opacity:.35;cursor:not-allowed}
+
+footer{text-align:center;color:var(--muted);font-size:10px;padding:10px}
+
+@keyframes appear{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{to{opacity:.3;transform:translateY(-3px)}}
+
+@media(max-width:600px){
+  header{height:60px;padding:0 14px}
+  .brand{font-size:12px}
+  main{padding:22px 14px 8px}
+  .welcome{padding:42px 0}
+  .welcome p{font-size:12px}
+  .suggestion{font-size:10px;padding:8px 10px}
+  .message{max-width:94%}
 }
-
-button,textarea {
-  font:inherit;
-}
-
-button {
-  cursor:pointer;
-  -webkit-tap-highlight-color:transparent;
-}
-
-.app {
-  min-height:100vh;
-  max-width:1100px;
-  margin:auto;
-  display:flex;
-  flex-direction:column;
-}
-
-header {
-  height:66px;
-  padding:0 24px;
-  border-bottom:1px solid var(--line);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.brand {
-  font-size:14px;
-  font-weight:700;
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.brand-mark {
-  width:30px;
-  height:30px;
-  border-radius:10px;
-  background:var(--soft);
-  display:grid;
-  place-items:center;
-  font-size:17px;
-}
-
-.actions {
-  display:flex;
-  gap:8px;
-}
-
-.icon-btn {
-  width:36px;
-  height:36px;
-  border:1px solid var(--line);
-  border-radius:11px;
-  background:var(--surface);
-  color:var(--text);
-  font-size:18px;
-}
-
-.icon-btn:hover {
-  background:var(--soft);
-}
-
-main {
-  width:100%;
-  max-width:780px;
-  flex:1;
-  margin:0 auto;
-  padding:32px 22px 12px;
-  display:flex;
-  flex-direction:column;
-}
-
-.welcome {
-  margin:auto 0;
-  text-align:center;
-  padding:55px 0 65px;
-}
-
-.welcome-mark {
-  width:48px;
-  height:48px;
-  margin:0 auto 18px;
-  border-radius:16px;
-  background:var(--soft);
-  display:grid;
-  place-items:center;
-  font-size:24px;
-}
-
-h1 {
-  font-size:clamp(22px,4vw,30px);
-  line-height:1.8;
-  margin:0 0 8px;
-  font-weight:700;
-}
-
-.welcome p {
-  font-size:13px;
-  color:var(--muted);
-  line-height:2;
-  margin:0;
-}
-
-.suggestions {
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:24px;
-}
-
-.suggestion {
-  border:1px solid var(--line);
-  background:var(--surface);
-  color:var(--text);
-  border-radius:12px;
-  padding:9px 13px;
-  font-size:11px;
-}
-
-.suggestion:hover {
-  background:var(--soft);
-}
-
-.chat {
-  display:flex;
-  flex-direction:column;
-  gap:22px;
-  padding-bottom:20px;
-}
-
-.message {
-  max-width:88%;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-  animation:appear .18s ease;
-}
-
-.message.user {
-  align-self:flex-start;
-}
-
-.message.ai {
-  align-self:stretch;
-  max-width:100%;
-}
-
-.message-label {
-  font-size:10px;
-  color:var(--muted);
-  padding:0 4px;
-}
-
-.message-body {
-  font-size:13px;
-  line-height:2;
-  white-space:pre-wrap;
-  overflow-wrap:anywhere;
-  unicode-bidi:plaintext;
-}
-
-.user .message-body {
-  background:var(--soft);
-  padding:10px 14px;
-  border-radius:15px 5px 15px 15px;
-}
-
-.ai .message-body {
-  padding:2px 4px;
-}
-
-.typing {
-  display:flex;
-  gap:5px;
-  padding:8px 4px;
-}
-
-.typing span {
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:var(--muted);
-  animation:pulse .7s infinite alternate;
-}
-
-.typing span:nth-child(2) {
-  animation-delay:.15s;
-}
-
-.typing span:nth-child(3) {
-  animation-delay:.3s;
-}
-
-.composer-wrap {
-  position:sticky;
-  bottom:0;
-  padding:12px 0 10px;
-  background:linear-gradient(transparent,var(--bg) 18%);
-}
-
-.composer {
-  border:1px solid var(--line);
-  border-radius:18px;
-  background:var(--surface);
-  padding:10px 12px;
-  display:flex;
-  align-items:flex-end;
-  gap:10px;
-}
-
-.composer:focus-within {
-  border-color:#a5a5ad;
-}
-
-#prompt {
-  flex:1;
-  min-width:0;
-  min-height:42px;
-  max-height:150px;
-  resize:none;
-  border:0;
-  outline:0;
-  background:transparent;
-  color:var(--text);
-  font-size:13px;
-  line-height:1.9;
-  padding:5px 2px;
-  direction:rtl;
-}
-
-#prompt::placeholder {
-  color:var(--muted);
-}
-
-.send-btn {
-  width:36px;
-  height:36px;
-  flex:0 0 36px;
-  border:0;
-  border-radius:11px;
-  background:var(--accent);
-  color:var(--bg);
-  font-size:20px;
-}
-
-.send-btn:disabled {
-  opacity:.35;
-  cursor:not-allowed;
-}
-
-footer {
-  text-align:center;
-  color:var(--muted);
-  font-size:10px;
-  padding:10px;
-}
-
-@keyframes appear {
-  from {
-    opacity:0;
-    transform:translateY(5px);
-  }
-  to {
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-@keyframes pulse {
-  to {
-    opacity:.3;
-    transform:translateY(-3px);
-  }
-}
-
-@media(max-width:600px) {
-  header {
-    height:60px;
-    padding:0 14px;
-  }
-
-  .brand {
-    font-size:12px;
-  }
-
-  main {
-    padding:22px 14px 8px;
-  }
-
-  .welcome {
-    padding:42px 0;
-  }
-
-  .welcome p {
-    font-size:12px;
-  }
-
-  .suggestion {
-    font-size:10px;
-    padding:8px 10px;
-  }
-
-  .message {
-    max-width:94%;
-  }
-}
-
-@media(prefers-reduced-motion:reduce) {
-  *,*::before,*::after {
-    animation:none!important;
-    transition:none!important;
-  }
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
 }
 </style>
 </head>
@@ -371,155 +108,155 @@ footer {
     <span class="brand-mark">✦</span>
     <span>دستیار هوش مصنوعی تی تی موبایل</span>
   </div>
-
   <div class="actions">
-    <button class="icon-btn" id="newChat"
-      title="گفت‌وگوی جدید"
-      aria-label="گفت‌وگوی جدید">＋</button>
-
-    <button class="icon-btn" id="themeBtn"
-      title="تغییر حالت شب و روز"
-      aria-label="تغییر حالت شب و روز">☾</button>
+    <button class="icon-btn" id="newChat" title="گفت‌وگوی جدید" aria-label="گفت‌وگوی جدید">＋</button>
+    <button class="icon-btn" id="themeBtn" title="تغییر حالت شب و روز" aria-label="تغییر حالت شب و روز">☾</button>
   </div>
 </header>
 
 <main>
+  <section class="welcome" id="welcome">
+    <div class="welcome-mark">✦</div>
+    <h1>سلام! چطور می‌تونم کمکت کنم؟</h1>
+    <p>سؤالت رو بپرس تا برای انتخاب و استفاده از محصولات راهنماییت کنم.</p>
+    <div class="suggestions">
+      <button class="suggestion">دسته‌بندی محصولات رو نشونم بده</button>
+      <button class="suggestion">پاوربانک انکر چه مدل‌هایی دارید؟</button>
+      <button class="suggestion">مشاوره خرید هدفون و اسپیکر</button>
+    </div>
+  </section>
 
-<section class="welcome" id="welcome">
-  <div class="welcome-mark">✦</div>
+  <section class="chat" id="chat" aria-live="polite"></section>
 
-  <h1>سلام! چطور می‌تونم کمکت کنم؟</h1>
-
-  <p>
-    سؤالت رو بپرس تا برای انتخاب و استفاده از محصولات راهنماییت کنم.
-  </p>
-
-  <div class="suggestions">
-    <button class="suggestion">راهنمای خرید گوشی و لوازم جانبی</button>
-    <button class="suggestion">مقایسه محصولات</button>
-    <button class="suggestion">مشاوره خرید هدفون و اسپیکر</button>
+  <div class="composer-wrap">
+    <div class="composer">
+      <textarea id="prompt" rows="1" placeholder="پیامت رو بنویس..." aria-label="متن پیام"></textarea>
+      <button class="send-btn" id="sendBtn" title="ارسال پیام" aria-label="ارسال پیام">↑</button>
+    </div>
   </div>
-</section>
-
-<section class="chat" id="chat" aria-live="polite"></section>
-
-<div class="composer-wrap">
-  <div class="composer">
-
-    <textarea
-      id="prompt"
-      rows="1"
-      placeholder="پیامت رو بنویس..."
-      aria-label="متن پیام"
-    ></textarea>
-
-    <button
-      class="send-btn"
-      id="sendBtn"
-      title="ارسال پیام"
-      aria-label="ارسال پیام"
-    >↑</button>
-
-  </div>
-</div>
-
 </main>
 
 <footer>دستیار هوش مصنوعی تی تی موبایل</footer>
-
 </div>
 
 <script>
-
 // آدرس Production وب‌هوک n8n
 const WEBHOOK_URL =
-"https://n8nhossein.app.n8n.cloud/webhook/8c5ae1c0-f6da-46e8-bef9-d11a70817b1d";
+  "https://n8nhossein.app.n8n.cloud/webhook/8c5ae1c0-f6da-46e8-bef9-d11a70817b1d";
+const REQUEST_TIMEOUT_MS = 120000;
 
 const promptBox = document.getElementById("prompt");
-const sendBtn = document.getElementById("sendBtn");
-const chat = document.getElementById("chat");
-const welcome = document.getElementById("welcome");
-const themeBtn = document.getElementById("themeBtn");
+const sendBtn   = document.getElementById("sendBtn");
+const chat      = document.getElementById("chat");
+const welcome   = document.getElementById("welcome");
+const themeBtn  = document.getElementById("themeBtn");
 
-let history = [];
 let loading = false;
 
-// ساخت شناسه نشست
 function createSessionId() {
   return (window.crypto && crypto.randomUUID)
     ? crypto.randomUUID()
-    : Date.now().toString(36) +
-      Math.random().toString(36).slice(2);
+    : Date.now().toString(36) + Math.random().toString(36).slice(2);
 }
-
 let sessionId = createSessionId();
 
-// حالت شب و روز
+// ---------- تم ----------
 function setTheme(theme) {
   document.documentElement.dataset.theme = theme;
-
-  localStorage.setItem("chat-theme", theme);
-
-  themeBtn.textContent =
-    theme === "dark" ? "☀" : "☾";
-
-  document.querySelector(
-    'meta[name="theme-color"]'
-  ).content =
+  try { localStorage.setItem("chat-theme", theme); } catch {}
+  themeBtn.textContent = theme === "dark" ? "☀" : "☾";
+  document.querySelector('meta[name="theme-color"]').content =
     theme === "dark" ? "#111114" : "#ffffff";
 }
-
-setTheme(localStorage.getItem("chat-theme") || "light");
+let savedTheme = "light";
+try { savedTheme = localStorage.getItem("chat-theme") || "light"; } catch {}
+setTheme(savedTheme);
 
 themeBtn.addEventListener("click", () => {
-  const current =
-    document.documentElement.dataset.theme;
-
-  setTheme(current === "dark" ? "light" : "dark");
+  setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
 });
 
-// گفت‌وگوی جدید
+// ---------- گفت‌وگوی جدید ----------
 document.getElementById("newChat").addEventListener("click", () => {
   if (loading) return;
-
-  history = [];
   sessionId = createSessionId();
-
   chat.replaceChildren();
   welcome.hidden = false;
-
   promptBox.value = "";
   promptBox.style.height = "42px";
   promptBox.focus();
 });
 
-// نمایش پیام
+// ---------- نمایش متن؛ هر آدرس به «مشاهده محصول» تبدیل می‌شود ----------
+// پشتیبانی از: آدرس ساده، [متن](آدرس)، و برچسب «لینک:» قبل از آدرس
+const LINK_RE =
+  /(?:لینک(?:\s*محصول)?\s*[:：]\s*)?(?:\[[^\]]*\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s<>"'،؛]+))/g;
+
+function safeUrl(raw) {
+  // حذف علامت‌های نگارشی انتهای آدرس
+  const url = raw.replace(/[.,!?؟،؛:)\]}»]+$/u, "");
+  try {
+    const u = new URL(url);
+    return (u.protocol === "http:" || u.protocol === "https:")
+      ? { href: u.href, rest: raw.slice(url.length) }
+      : null;
+  } catch { return null; }
+}
+
+function renderText(el, text) {
+  el.textContent = "";
+  text = String(text).replace(/\*\*/g, "");
+
+  let last = 0, m;
+  LINK_RE.lastIndex = 0;
+
+  while ((m = LINK_RE.exec(text)) !== null) {
+    const parsed = safeUrl(m[1] || m[2]);
+    if (!parsed) continue;
+
+    if (m.index > last) {
+      el.appendChild(document.createTextNode(text.slice(last, m.index)));
+    }
+
+    const a = document.createElement("a");
+    a.href = parsed.href;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.textContent = "مشاهده محصول";
+    el.appendChild(a);
+
+    if (parsed.rest) el.appendChild(document.createTextNode(parsed.rest));
+    last = m.index + m[0].length;
+  }
+
+  if (last < text.length) {
+    el.appendChild(document.createTextNode(text.slice(last)));
+  }
+}
+
+function scrollTo(el) {
+  el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
 function addMessage(type, text) {
   const wrapper = document.createElement("div");
   wrapper.className = "message " + type;
 
   const label = document.createElement("div");
   label.className = "message-label";
-
-  label.textContent =
-    type === "user" ? "شما" : "دستیار تی تی موبایل";
+  label.textContent = type === "user" ? "شما" : "دستیار تی تی موبایل";
 
   const body = document.createElement("div");
   body.className = "message-body";
-  body.textContent = text;
+  if (type === "ai") renderText(body, text);
+  else body.textContent = text;
 
   wrapper.append(label, body);
   chat.appendChild(wrapper);
-
-  wrapper.scrollIntoView({
-    behavior:"smooth",
-    block:"nearest"
-  });
-
+  scrollTo(wrapper);
   return wrapper;
 }
 
-// نمایش وضعیت پردازش
 function addTyping() {
   const wrapper = document.createElement("div");
   wrapper.className = "message ai";
@@ -535,17 +272,16 @@ function addTyping() {
 
   wrapper.append(label, dots);
   chat.appendChild(wrapper);
-
-  wrapper.scrollIntoView({
-    behavior:"smooth",
-    block:"nearest"
-  });
+  scrollTo(wrapper);
 }
 
-// ارسال پیام به n8n
+function removeTyping() {
+  document.getElementById("typing")?.remove();
+}
+
+// ---------- ارسال پیام ----------
 async function sendMessage() {
   const message = promptBox.value.trim();
-
   if (!message || loading) return;
 
   if (message.length > 2000) {
@@ -554,7 +290,6 @@ async function sendMessage() {
   }
 
   welcome.hidden = true;
-
   addMessage("user", message);
 
   promptBox.value = "";
@@ -562,136 +297,77 @@ async function sendMessage() {
 
   loading = true;
   sendBtn.disabled = true;
-
   addTyping();
 
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
   try {
-
     const response = await fetch(WEBHOOK_URL, {
-      method:"POST",
-
-      headers:{
-        "Content-Type":"application/json"
-      },
-
-      body:JSON.stringify({
-        message:message,
-        sessionId:sessionId,
-        history:history
-      })
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message, sessionId }),
+      signal: controller.signal
     });
 
     const raw = await response.text();
-
     let data;
-
-    try {
-      data = raw ? JSON.parse(raw) : {};
-    } catch {
-      data = raw;
-    }
+    try { data = raw ? JSON.parse(raw) : {}; } catch { data = raw; }
 
     if (!response.ok) {
-      const detail =
-        typeof data === "string"
-          ? data
-          : (data.message || data.error || "");
-
+      const detail = typeof data === "string" ? data : (data.message || data.error || "");
       throw new Error(
         "خطای سرور: " + response.status +
-        (detail ? " — " + String(detail).slice(0,250) : "")
+        (detail ? " — " + String(detail).slice(0, 250) : "")
       );
     }
 
-    const answer =
-      typeof data === "string"
-        ? data
-        : (
-          data.reply ??
-          data.output ??
-          data.text ??
-          data.response ??
-          data.message ??
-          data[0]?.output
-        );
+    const answer = typeof data === "string"
+      ? data
+      : (data.reply ?? data.output ?? data.text ?? data.response ?? data.message ?? data[0]?.output);
 
-    if (
-      answer == null ||
-      String(answer).trim() === ""
-    ) {
+    if (answer == null || String(answer).trim() === "") {
       throw new Error("پاسخ معتبری از n8n دریافت نشد.");
     }
 
-    document.getElementById("typing")?.remove();
+    removeTyping();
+    addMessage("ai", String(answer));
 
-    const finalAnswer = String(answer);
-
-    addMessage("ai", finalAnswer);
-
-    history.push(
-      {
-        role:"user",
-        content:message
-      },
-      {
-        role:"assistant",
-        content:finalAnswer
-      }
-    );
-
-  } catch(error) {
-
-    document.getElementById("typing")?.remove();
-
-    addMessage(
-      "ai",
-      "ارسال پیام ناموفق بود. لطفاً دوباره تلاش کن.\n\nجزئیات: " +
-      error.message
-    );
-
+  } catch (error) {
+    removeTyping();
+    const msg = error.name === "AbortError"
+      ? "پاسخ دیر رسید. لطفاً دوباره تلاش کن."
+      : error.message;
+    addMessage("ai", "ارسال پیام ناموفق بود. لطفاً دوباره تلاش کن.\n\nجزئیات: " + msg);
   } finally {
-
+    clearTimeout(timer);
     loading = false;
     sendBtn.disabled = false;
     promptBox.focus();
-
   }
 }
 
-// دکمه ارسال
 sendBtn.addEventListener("click", sendMessage);
 
-// ارسال با Enter
-promptBox.addEventListener("keydown", event => {
-  if (
-    event.key === "Enter" &&
-    !event.shiftKey &&
-    !event.isComposing
-  ) {
-    event.preventDefault();
+promptBox.addEventListener("keydown", e => {
+  if (e.key === "Enter" && !e.shiftKey && !e.isComposing) {
+    e.preventDefault();
     sendMessage();
   }
 });
 
-// تنظیم ارتفاع کادر پیام
 promptBox.addEventListener("input", () => {
   promptBox.style.height = "auto";
-
-  promptBox.style.height =
-    Math.min(promptBox.scrollHeight, 150) + "px";
+  promptBox.style.height = Math.min(promptBox.scrollHeight, 150) + "px";
 });
 
-// پیشنهادهای آماده
 document.querySelectorAll(".suggestion").forEach(button => {
   button.addEventListener("click", () => {
     if (loading) return;
-
     promptBox.value = button.textContent.trim();
     sendMessage();
   });
 });
-
 </script>
-
 </body>
 </html>
