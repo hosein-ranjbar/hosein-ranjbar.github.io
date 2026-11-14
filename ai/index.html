@@ -3,38 +3,34 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f7f8fc">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
 <meta name="description" content="دستیار هوش مصنوعی تی تی موبایل">
 <title>دستیار هوش مصنوعی تی تی موبایل</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap');
 
 :root {
   color-scheme: light;
-  --bg:#f7f8fc;
+  --bg:#fff;
   --surface:#fff;
-  --surface2:#f0f1f6;
+  --soft:#f5f5f7;
   --text:#202124;
-  --muted:#858995;
-  --border:rgba(30,35,50,.09);
-  --accent:#6478ed;
-  --accent2:#9874e9;
-  --shadow:0 10px 40px rgba(30,40,80,.06);
+  --muted:#85858d;
+  --line:#e9e9ed;
+  --accent:#25252b;
 }
 
 [data-theme="dark"] {
   color-scheme:dark;
-  --bg:#101116;
-  --surface:#191a21;
-  --surface2:#24252e;
-  --text:#f1f1f5;
-  --muted:#999ba9;
-  --border:rgba(255,255,255,.09);
-  --accent:#8c9bff;
-  --accent2:#b18cf4;
-  --shadow:0 10px 40px rgba(0,0,0,.2);
+  --bg:#111114;
+  --surface:#19191e;
+  --soft:#24242b;
+  --text:#f2f2f4;
+  --muted:#a0a0aa;
+  --line:#303038;
+  --accent:#f2f2f4;
 }
 
 * {
@@ -43,11 +39,10 @@
 
 body {
   margin:0;
-  font-family:'Vazirmatn',sans-serif;
   background:var(--bg);
   color:var(--text);
+  font-family:Vazirmatn,sans-serif;
   min-height:100vh;
-  transition:background .3s,color .3s;
 }
 
 button,textarea {
@@ -55,125 +50,102 @@ button,textarea {
 }
 
 button {
+  cursor:pointer;
   -webkit-tap-highlight-color:transparent;
 }
 
 .app {
   min-height:100vh;
+  max-width:1100px;
+  margin:auto;
   display:flex;
   flex-direction:column;
-  max-width:1500px;
-  margin:auto;
 }
 
-/* Header */
-
 header {
-  height:75px;
-  padding:0 30px;
+  height:66px;
+  padding:0 24px;
+  border-bottom:1px solid var(--line);
   display:flex;
   align-items:center;
   justify-content:space-between;
-  border-bottom:1px solid var(--border);
-  background:var(--bg);
 }
 
 .brand {
+  font-size:14px;
+  font-weight:700;
   display:flex;
   align-items:center;
-  gap:12px;
-  font-size:16px;
-  font-weight:800;
-}
-
-.logo {
-  width:40px;
-  height:40px;
-  border-radius:14px;
-  display:grid;
-  place-items:center;
-  color:white;
-  font-size:22px;
-  background:linear-gradient(135deg,#6e83f5,#a16de5);
-  box-shadow:0 5px 15px #7886ef44;
-  flex-shrink:0;
-}
-
-.header-actions {
-  display:flex;
   gap:10px;
 }
 
+.brand-mark {
+  width:30px;
+  height:30px;
+  border-radius:10px;
+  background:var(--soft);
+  display:grid;
+  place-items:center;
+  font-size:17px;
+}
+
+.actions {
+  display:flex;
+  gap:8px;
+}
+
 .icon-btn {
-  width:42px;
-  height:42px;
-  border:1px solid var(--border);
-  border-radius:14px;
-  color:var(--text);
+  width:36px;
+  height:36px;
+  border:1px solid var(--line);
+  border-radius:11px;
   background:var(--surface);
-  cursor:pointer;
-  font-size:19px;
-  transition:.2s;
+  color:var(--text);
+  font-size:18px;
 }
 
 .icon-btn:hover {
-  transform:translateY(-2px);
-  background:var(--surface2);
+  background:var(--soft);
 }
 
-/* Main */
-
 main {
-  flex:1;
   width:100%;
-  max-width:920px;
+  max-width:780px;
+  flex:1;
   margin:0 auto;
-  padding:45px 25px 20px;
+  padding:32px 22px 12px;
   display:flex;
   flex-direction:column;
 }
 
-/* Welcome */
-
 .welcome {
-  margin:auto;
-  width:100%;
+  margin:auto 0;
   text-align:center;
-  padding:35px 0 55px;
+  padding:55px 0 65px;
 }
 
-.welcome-icon {
-  width:72px;
-  height:72px;
-  border-radius:24px;
-  margin:0 auto 24px;
+.welcome-mark {
+  width:48px;
+  height:48px;
+  margin:0 auto 18px;
+  border-radius:16px;
+  background:var(--soft);
   display:grid;
   place-items:center;
-  font-size:34px;
-  color:white;
-  background:linear-gradient(135deg,#6e83f5,#a16de5);
-  box-shadow:0 10px 35px #7886ef35;
+  font-size:24px;
 }
 
-.welcome h1 {
-  font-size:clamp(24px,5vw,37px);
-  margin:0 0 14px;
-  font-weight:800;
-  letter-spacing:-1px;
+h1 {
+  font-size:clamp(22px,4vw,30px);
   line-height:1.8;
-}
-
-.gradient-text {
-  background:linear-gradient(90deg,#6380ed,#a36ee5);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
+  margin:0 0 8px;
+  font-weight:700;
 }
 
 .welcome p {
+  font-size:13px;
   color:var(--muted);
-  font-size:14px;
-  line-height:2.2;
+  line-height:2;
   margin:0;
 }
 
@@ -181,52 +153,36 @@ main {
   display:flex;
   justify-content:center;
   flex-wrap:wrap;
-  gap:10px;
-  margin-top:30px;
+  gap:8px;
+  margin-top:24px;
 }
 
 .suggestion {
-  padding:11px 17px;
-  border-radius:15px;
+  border:1px solid var(--line);
   background:var(--surface);
-  border:1px solid var(--border);
   color:var(--text);
-  font-size:12px;
-  cursor:pointer;
-  transition:.2s;
+  border-radius:12px;
+  padding:9px 13px;
+  font-size:11px;
 }
 
 .suggestion:hover {
-  border-color:var(--accent);
-  transform:translateY(-3px);
+  background:var(--soft);
 }
-
-/* Chat */
 
 .chat {
   display:flex;
   flex-direction:column;
-  gap:25px;
-  padding-bottom:25px;
+  gap:22px;
+  padding-bottom:20px;
 }
 
 .message {
-  max-width:85%;
+  max-width:88%;
   display:flex;
   flex-direction:column;
-  gap:8px;
-  animation:appear .3s ease;
-}
-
-@keyframes appear {
-  from {
-    opacity:0;
-    transform:translateY(9px);
-  }
-  to {
-    opacity:1;
-    transform:translateY(0);
-  }
+  gap:6px;
+  animation:appear .18s ease;
 }
 
 .message.user {
@@ -239,97 +195,85 @@ main {
 }
 
 .message-label {
-  font-size:11px;
+  font-size:10px;
   color:var(--muted);
-  padding:0 5px;
+  padding:0 4px;
 }
 
 .message-body {
-  padding:14px 18px;
-  line-height:2.1;
-  font-size:14px;
+  font-size:13px;
+  line-height:2;
   white-space:pre-wrap;
   overflow-wrap:anywhere;
   unicode-bidi:plaintext;
 }
 
 .user .message-body {
-  background:var(--surface2);
-  border-radius:18px 5px 18px 18px;
+  background:var(--soft);
+  padding:10px 14px;
+  border-radius:15px 5px 15px 15px;
 }
 
 .ai .message-body {
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:5px 18px 18px 18px;
-  box-shadow:var(--shadow);
+  padding:2px 4px;
 }
-
-/* Typing */
 
 .typing {
   display:flex;
   gap:5px;
-  padding:15px;
+  padding:8px 4px;
 }
 
 .typing span {
-  width:7px;
-  height:7px;
-  background:var(--accent);
+  width:6px;
+  height:6px;
   border-radius:50%;
-  animation:bounce .8s infinite alternate;
+  background:var(--muted);
+  animation:pulse .7s infinite alternate;
 }
 
 .typing span:nth-child(2) {
-  animation-delay:.2s;
+  animation-delay:.15s;
 }
 
 .typing span:nth-child(3) {
-  animation-delay:.4s;
+  animation-delay:.3s;
 }
-
-@keyframes bounce {
-  to {
-    transform:translateY(-6px);
-    opacity:.4;
-  }
-}
-
-/* Composer */
 
 .composer-wrap {
   position:sticky;
   bottom:0;
-  padding:15px 0 12px;
-  background:linear-gradient(transparent,var(--bg) 20%);
+  padding:12px 0 10px;
+  background:linear-gradient(transparent,var(--bg) 18%);
 }
 
 .composer {
+  border:1px solid var(--line);
+  border-radius:18px;
   background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:23px;
-  padding:13px 15px;
-  box-shadow:var(--shadow);
-  transition:border .2s;
+  padding:10px 12px;
+  display:flex;
+  align-items:flex-end;
+  gap:10px;
 }
 
 .composer:focus-within {
-  border-color:var(--accent);
+  border-color:#a5a5ad;
 }
 
 #prompt {
-  display:block;
-  width:100%;
-  min-height:50px;
-  max-height:160px;
+  flex:1;
+  min-width:0;
+  min-height:42px;
+  max-height:150px;
   resize:none;
   border:0;
   outline:0;
   background:transparent;
   color:var(--text);
-  font-size:14px;
+  font-size:13px;
   line-height:1.9;
+  padding:5px 2px;
   direction:rtl;
 }
 
@@ -337,77 +281,63 @@ main {
   color:var(--muted);
 }
 
-.composer-bottom {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-top:7px;
-}
-
-.hint {
-  color:var(--muted);
-  font-size:10px;
-}
-
 .send-btn {
-  width:43px;
-  height:43px;
+  width:36px;
+  height:36px;
+  flex:0 0 36px;
   border:0;
-  border-radius:15px;
-  color:white;
-  background:linear-gradient(135deg,#687ff0,#9871e5);
-  cursor:pointer;
-  font-size:22px;
-  transition:.2s;
-}
-
-.send-btn:hover {
-  transform:scale(1.06);
+  border-radius:11px;
+  background:var(--accent);
+  color:var(--bg);
+  font-size:20px;
 }
 
 .send-btn:disabled {
-  opacity:.4;
+  opacity:.35;
   cursor:not-allowed;
 }
 
-/* Footer */
-
 footer {
   text-align:center;
-  padding:12px;
-  font-size:10px;
   color:var(--muted);
+  font-size:10px;
+  padding:10px;
 }
 
-/* Mobile */
+@keyframes appear {
+  from {
+    opacity:0;
+    transform:translateY(5px);
+  }
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes pulse {
+  to {
+    opacity:.3;
+    transform:translateY(-3px);
+  }
+}
 
 @media(max-width:600px) {
   header {
-    height:65px;
+    height:60px;
     padding:0 14px;
   }
 
   .brand {
-    font-size:13px;
-    gap:9px;
-  }
-
-  .logo {
-    width:36px;
-    height:36px;
-    border-radius:12px;
+    font-size:12px;
   }
 
   main {
-    padding:25px 14px 10px;
+    padding:22px 14px 8px;
   }
 
   .welcome {
-    padding:35px 0;
-  }
-
-  .welcome h1 {
-    font-size:25px;
+    padding:42px 0;
   }
 
   .welcome p {
@@ -415,48 +345,34 @@ footer {
   }
 
   .suggestion {
-    font-size:11px;
-    padding:10px 12px;
+    font-size:10px;
+    padding:8px 10px;
   }
 
   .message {
     max-width:94%;
   }
-
-  .message-body {
-    font-size:13px;
-  }
-
-  .composer {
-    border-radius:19px;
-    padding:11px;
-  }
-
-  .hint {
-    font-size:9px;
-  }
 }
 
 @media(prefers-reduced-motion:reduce) {
   *,*::before,*::after {
-    animation-duration:.01ms!important;
-    transition-duration:.01ms!important;
+    animation:none!important;
+    transition:none!important;
   }
 }
 </style>
 </head>
 
 <body>
-
 <div class="app">
 
 <header>
   <div class="brand">
-    <div class="logo">✦</div>
+    <span class="brand-mark">✦</span>
     <span>دستیار هوش مصنوعی تی تی موبایل</span>
   </div>
 
-  <div class="header-actions">
+  <div class="actions">
     <button class="icon-btn" id="newChat"
       title="گفت‌وگوی جدید"
       aria-label="گفت‌وگوی جدید">＋</button>
@@ -469,78 +385,55 @@ footer {
 
 <main>
 
-  <section class="welcome" id="welcome">
+<section class="welcome" id="welcome">
+  <div class="welcome-mark">✦</div>
 
-    <div class="welcome-icon">✦</div>
+  <h1>سلام! چطور می‌تونم کمکت کنم؟</h1>
 
-    <h1>
-      سلام!
-      <span class="gradient-text">
-        به دستیار هوشمند تی تی موبایل خوش اومدی
-      </span>
-    </h1>
+  <p>
+    سؤالت رو بپرس تا برای انتخاب و استفاده از محصولات راهنماییت کنم.
+  </p>
 
-    <p>
-      اینجا می‌تونی سؤالاتت رو بپرسی، راهنمایی بگیری
-      و از امکانات دستیار هوشمند استفاده کنی.
-      <br>
-      چطور می‌تونم کمکت کنم؟
-    </p>
-
-    <div class="suggestions">
-      <button class="suggestion">راهنمای خرید گوشی و لوازم جانبی</button>
-      <button class="suggestion">مقایسه محصولات</button>
-      <button class="suggestion">مشاوره خرید هدفون و اسپیکر</button>
-    </div>
-
-  </section>
-
-  <section class="chat" id="chat" aria-live="polite"></section>
-
-  <div class="composer-wrap">
-    <div class="composer">
-
-      <textarea
-        id="prompt"
-        rows="1"
-        placeholder="پیامت رو اینجا بنویس..."
-        aria-label="متن پیام"
-      ></textarea>
-
-      <div class="composer-bottom">
-        <span class="hint">دستیار هوشمند تی تی موبایل</span>
-
-        <button
-          class="send-btn"
-          id="sendBtn"
-          title="ارسال پیام"
-          aria-label="ارسال پیام"
-        >↑</button>
-      </div>
-
-    </div>
+  <div class="suggestions">
+    <button class="suggestion">راهنمای خرید گوشی و لوازم جانبی</button>
+    <button class="suggestion">مقایسه محصولات</button>
+    <button class="suggestion">مشاوره خرید هدفون و اسپیکر</button>
   </div>
+</section>
+
+<section class="chat" id="chat" aria-live="polite"></section>
+
+<div class="composer-wrap">
+  <div class="composer">
+
+    <textarea
+      id="prompt"
+      rows="1"
+      placeholder="پیامت رو بنویس..."
+      aria-label="متن پیام"
+    ></textarea>
+
+    <button
+      class="send-btn"
+      id="sendBtn"
+      title="ارسال پیام"
+      aria-label="ارسال پیام"
+    >↑</button>
+
+  </div>
+</div>
 
 </main>
 
-<footer>
-  دستیار هوش مصنوعی تی تی موبایل
-</footer>
+<footer>دستیار هوش مصنوعی تی تی موبایل</footer>
 
 </div>
 
 <script>
 
-// ======================================
-// آدرس Webhook تستی n8n
-// ======================================
-
+// آدرس Production وب‌هوک n8n
 const WEBHOOK_URL =
-"https://n8nhossein.app.n8n.cloud/webhook-test/8c5ae1c0-f6da-46e8-bef9-d11a70817b1d";
-
-// ======================================
-// متغیرهای برنامه
-// ======================================
+"https://n8nhossein.app.n8n.cloud/webhook/8c5ae1c0-f6da-46e8-bef9-d11a70817b1d";
 
 const promptBox = document.getElementById("prompt");
 const sendBtn = document.getElementById("sendBtn");
@@ -551,17 +444,18 @@ const themeBtn = document.getElementById("themeBtn");
 let history = [];
 let loading = false;
 
-const sessionId = crypto.randomUUID
-  ? crypto.randomUUID()
-  : Date.now().toString(36) +
-    Math.random().toString(36).slice(2);
+// ساخت شناسه نشست
+function createSessionId() {
+  return (window.crypto && crypto.randomUUID)
+    ? crypto.randomUUID()
+    : Date.now().toString(36) +
+      Math.random().toString(36).slice(2);
+}
 
-// ======================================
+let sessionId = createSessionId();
+
 // حالت شب و روز
-// ======================================
-
 function setTheme(theme) {
-
   document.documentElement.dataset.theme = theme;
 
   localStorage.setItem("chat-theme", theme);
@@ -572,87 +466,49 @@ function setTheme(theme) {
   document.querySelector(
     'meta[name="theme-color"]'
   ).content =
-    theme === "dark" ? "#101116" : "#f7f8fc";
-
+    theme === "dark" ? "#111114" : "#ffffff";
 }
 
-setTheme(
-  localStorage.getItem("chat-theme") || "light"
-);
+setTheme(localStorage.getItem("chat-theme") || "light");
 
-themeBtn.onclick = () => {
-
+themeBtn.addEventListener("click", () => {
   const current =
     document.documentElement.dataset.theme;
 
   setTheme(current === "dark" ? "light" : "dark");
+});
 
-};
-
-// ======================================
-// گفتگوی جدید
-// ======================================
-
-document.getElementById("newChat").onclick = () => {
-
+// گفت‌وگوی جدید
+document.getElementById("newChat").addEventListener("click", () => {
   if (loading) return;
 
   history = [];
-  chat.innerHTML = "";
+  sessionId = createSessionId();
 
-  welcome.style.display = "";
+  chat.replaceChildren();
+  welcome.hidden = false;
 
   promptBox.value = "";
-  promptBox.style.height = "50px";
+  promptBox.style.height = "42px";
   promptBox.focus();
-
-};
-
-// ======================================
-// پیشنهادهای آماده
-// ======================================
-
-document.querySelectorAll(".suggestion").forEach(btn => {
-
-  btn.onclick = () => {
-
-    if (loading) return;
-
-    promptBox.value = btn.textContent.trim();
-
-    sendMessage();
-
-  };
-
 });
 
-// ======================================
 // نمایش پیام
-// ======================================
-
 function addMessage(type, text) {
-
   const wrapper = document.createElement("div");
-
   wrapper.className = "message " + type;
 
   const label = document.createElement("div");
-
   label.className = "message-label";
 
   label.textContent =
-    type === "user"
-      ? "شما"
-      : "دستیار هوشمند تی تی موبایل";
+    type === "user" ? "شما" : "دستیار تی تی موبایل";
 
   const body = document.createElement("div");
-
   body.className = "message-body";
-
   body.textContent = text;
 
   wrapper.append(label, body);
-
   chat.appendChild(wrapper);
 
   wrapper.scrollIntoView({
@@ -661,74 +517,50 @@ function addMessage(type, text) {
   });
 
   return wrapper;
-
 }
 
-// ======================================
 // نمایش وضعیت پردازش
-// ======================================
-
 function addTyping() {
-
   const wrapper = document.createElement("div");
-
   wrapper.className = "message ai";
-
   wrapper.id = "typing";
 
   const label = document.createElement("div");
-
   label.className = "message-label";
-
-  label.textContent =
-    "دستیار تی تی موبایل در حال پردازش...";
+  label.textContent = "در حال نوشتن پاسخ...";
 
   const dots = document.createElement("div");
-
   dots.className = "typing";
-
-  dots.innerHTML =
-    "<span></span><span></span><span></span>";
+  dots.innerHTML = "<span></span><span></span><span></span>";
 
   wrapper.append(label, dots);
-
   chat.appendChild(wrapper);
 
   wrapper.scrollIntoView({
     behavior:"smooth",
     block:"nearest"
   });
-
 }
 
-// ======================================
 // ارسال پیام به n8n
-// ======================================
-
 async function sendMessage() {
-
   const message = promptBox.value.trim();
 
   if (!message || loading) return;
 
   if (message.length > 2000) {
-
     alert("حداکثر طول پیام ۲۰۰۰ کاراکتر است.");
-
     return;
-
   }
 
-  welcome.style.display = "none";
+  welcome.hidden = true;
 
   addMessage("user", message);
 
   promptBox.value = "";
-
-  promptBox.style.height = "50px";
+  promptBox.style.height = "42px";
 
   loading = true;
-
   sendBtn.disabled = true;
 
   addTyping();
@@ -736,55 +568,58 @@ async function sendMessage() {
   try {
 
     const response = await fetch(WEBHOOK_URL, {
-
       method:"POST",
 
-      headers: {
+      headers:{
         "Content-Type":"application/json"
       },
 
       body:JSON.stringify({
-
         message:message,
-
         sessionId:sessionId,
-
         history:history
-
       })
-
     });
 
-    if (!response.ok) {
+    const raw = await response.text();
 
-      throw new Error(
-        "خطای سرور: " + response.status
-      );
+    let data;
 
+    try {
+      data = raw ? JSON.parse(raw) : {};
+    } catch {
+      data = raw;
     }
 
-    const data = await response.json();
+    if (!response.ok) {
+      const detail =
+        typeof data === "string"
+          ? data
+          : (data.message || data.error || "");
+
+      throw new Error(
+        "خطای سرور: " + response.status +
+        (detail ? " — " + String(detail).slice(0,250) : "")
+      );
+    }
 
     const answer =
       typeof data === "string"
         ? data
-        : data.output ??
+        : (
           data.reply ??
+          data.output ??
           data.text ??
           data.response ??
           data.message ??
-          data[0]?.output;
+          data[0]?.output
+        );
 
     if (
-      answer === undefined ||
-      answer === null ||
+      answer == null ||
       String(answer).trim() === ""
     ) {
-
-      throw new Error(
-        "پاسخ معتبر از n8n دریافت نشد."
-      );
-
+      throw new Error("پاسخ معتبری از n8n دریافت نشد.");
     }
 
     document.getElementById("typing")?.remove();
@@ -794,17 +629,14 @@ async function sendMessage() {
     addMessage("ai", finalAnswer);
 
     history.push(
-
       {
         role:"user",
         content:message
       },
-
       {
         role:"assistant",
         content:finalAnswer
       }
-
     );
 
   } catch(error) {
@@ -813,56 +645,50 @@ async function sendMessage() {
 
     addMessage(
       "ai",
-      "متأسفانه در ارتباط با سرور مشکلی پیش آمد.\n" +
-      "لطفاً دوباره تلاش کن.\n\n" +
-      "جزئیات خطا: " + error.message
+      "ارسال پیام ناموفق بود. لطفاً دوباره تلاش کن.\n\nجزئیات: " +
+      error.message
     );
 
   } finally {
 
     loading = false;
-
     sendBtn.disabled = false;
-
     promptBox.focus();
 
   }
-
 }
 
-// ======================================
-// ارسال پیام با Enter
-// ======================================
+// دکمه ارسال
+sendBtn.addEventListener("click", sendMessage);
 
-sendBtn.onclick = sendMessage;
-
+// ارسال با Enter
 promptBox.addEventListener("keydown", event => {
-
   if (
     event.key === "Enter" &&
     !event.shiftKey &&
     !event.isComposing
   ) {
-
     event.preventDefault();
-
     sendMessage();
-
   }
-
 });
 
-// ======================================
-// تنظیم خودکار ارتفاع کادر پیام
-// ======================================
-
+// تنظیم ارتفاع کادر پیام
 promptBox.addEventListener("input", () => {
-
   promptBox.style.height = "auto";
 
   promptBox.style.height =
-    Math.min(promptBox.scrollHeight, 160) + "px";
+    Math.min(promptBox.scrollHeight, 150) + "px";
+});
 
+// پیشنهادهای آماده
+document.querySelectorAll(".suggestion").forEach(button => {
+  button.addEventListener("click", () => {
+    if (loading) return;
+
+    promptBox.value = button.textContent.trim();
+    sendMessage();
+  });
 });
 
 </script>
