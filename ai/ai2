@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>دستیار فروشگاه</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#1b1f24;--muted:#6b7280;--primary:#2563eb;--user:#2563eb;--userText:#fff;--bot:#eef0f3;--border:#e5e7eb}
+[data-theme=dark]{--bg:#0f1115;--card:#171a21;--text:#e8eaed;--muted:#9aa0a6;--primary:#60a5fa;--user:#2563eb;--userText:#fff;--bot:#232733;--border:#2a2f3a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Vazirmatn,system-ui,sans-serif;height:100dvh;display:flex;justify-content:center}
+.app{width:100%;max-width:720px;height:100dvh;display:flex;flex-direction:column;background:var(--card)}
+header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border)}
+header h1{font-size:16px;margin:0}
+header small{color:var(--muted);font-size:12px;display:block;margin-top:2px}
+.btns button{background:none;border:1px solid var(--border);color:var(--text);border-radius:8px;padding:6px 10px;cursor:pointer;font-size:14px;margin-inline-start:6px}
+.cats{display:flex;gap:8px;overflow-x:auto;padding:10px 16px;border-bottom:1px solid var(--border);scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--border);background:var(--bg);color:var(--text);border-radius:999px;padding:6px 14px;font-size:13px;cursor:pointer;white-space:nowrap}
+.chip:hover{border-color:var(--primary);color:var(--primary)}
+#msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:85%;padding:10px 14px;border-radius:16px;line-height:1.9;font-size:14px;word-wrap:break-word}
+.m.u{align-self:flex-start;background:var(--user);color:var(--userText);border-end-start-radius:4px}
+.m.b{align-self:flex-end;background:var(--bot);border-end-end-radius:4px}
+.m a{display:inline-block;margin:2px 0 8px;padding:3px 12px;border-radius:8px;background:var(--primary);color:#fff;text-decoration:none;font-size:13px}
+.m a.plain{background:none;color:var(--primary);padding:0;text-decoration:underline}
+.typing span{display:inline-block;width:6px;height:6px;margin:0 2px;border-radius:50%;background:var(--muted);animation:b 1s infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+@keyframes b{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+form{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--border)}
+input{flex:1;border:1px solid var(--border);background:var(--bg);color:var(--text);border-radius:12px;padding:12px 14px;font-size:14px;outline:none;font-family:inherit}
+input:focus{border-color:var(--primary)}
+form button{background:var(--primary);color:#fff;border:0;border-radius:12px;padding:0 20px;cursor:pointer;font-size:14px}
+form button:disabled{opacity:.5}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div><h1>🛍️ دستیار فروشگاه</h1><small>محصول، قیمت و راهنمایی خرید</small></div>
+    <div class="btns">
+      <button id="clear" title="گفتگوی جدید">↺</button>
+      <button id="theme" title="شب / روز">🌙</button>
+    </div>
+  </header>
+  <div class="cats" id="cats"></div>
+  <div id="msgs"></div>
+  <form id="f">
+    <input id="in" placeholder="سوالت رو بنویس..." autocomplete="off">
+    <button id="send">ارسال</button>
+  </form>
+</div>
+
+<script>
+/* ====== تنظیمات (این بخش را ویرایش کنید) ====== */
+const WEBHOOK_URL = "https://titimobilen8n.app.n8n.cloud/webhook/woo-chat-assistant";
+
+// دسته‌بندی‌های سایت: id را از ووکامرس > محصولات > دسته‌ها بردارید
+// (روی دسته hover کنید یا در آدرس ویرایش دسته، tag_ID را ببینید)
+const CATEGORIES = [
+  { name: "دسته اول",  id: 1 },
+  { name: "دسته دوم",  id: 2 },
+  { name: "دسته سوم",  id: 3 }
+];
+const WELCOME = "سلام! من دستیار فروشگاه هستم. دنبال چه محصولی می‌گردی؟ می‌تونی از دسته‌بندی‌های بالا هم شروع کنی.";
+/* ============================================ */
+
+const $ = id => document.getElementById(id);
+const msgs = $("msgs"), input = $("in"), sendBtn = $("send");
+let sid = localStorage.sid || (localStorage.sid = crypto.randomUUID());
+
+// تم شب/روز
+function setTheme(t){document.documentElement.dataset.theme=t;localStorage.theme=t;$("theme").textContent=t==="dark"?"☀️":"🌙"}
+setTheme(localStorage.theme || (matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"));
+$("theme").onclick=()=>setTheme(document.documentElement.dataset.theme==="dark"?"light":"dark");
+
+// رندر ساده و امن مارک‌داون
+function render(t){
+  let s=t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  s=s.replace(/\*\*(.+?)\*\*/g,"<b>$1</b>");
+  s=s.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,(m,a,u)=>`<a href="${u}" target="_blank" rel="noopener">${a}</a>`);
+  s=s.replace(/(^|[^">])(https?:\/\/[^\s<]+)/g,'$1<a class="plain" href="$2" target="_blank" rel="noopener">$2</a>');
+  return s.replace(/\n/g,"<br>");
+}
+function add(text,who){
+  const d=document.createElement("div");d.className="m "+who;
+  d.innerHTML=who==="b"?render(text):text.replace(/</g,"&lt;");
+  msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;
+}
+function typing(){
+  const d=document.createElement("div");d.className="m b typing";
+  d.innerHTML="<span></span><span></span><span></span>";msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;
+}
+
+async function ask(text){
+  text=text.trim(); if(!text) return;
+  add(text,"u"); input.value=""; sendBtn.disabled=true;
+  const t=typing();
+  try{
+    const r=await fetch(WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({message:text,sessionId:sid})});
+    const j=await r.json();
+    t.remove(); add(j.reply||"پاسخی دریافت نشد، دوباره تلاش کن.","b");
+  }catch(e){
+    t.remove(); add("مشکل در اتصال. لطفاً دوباره تلاش کنید.","b");
+  }
+  sendBtn.disabled=false; input.focus();
+}
+
+$("f").onsubmit=e=>{e.preventDefault();ask(input.value)};
+$("clear").onclick=()=>{sid=localStorage.sid=crypto.randomUUID();msgs.innerHTML="";add(WELCOME,"b")};
+
+CATEGORIES.forEach(c=>{
+  const b=document.createElement("button");b.className="chip";b.textContent=c.name;
+  b.onclick=()=>ask(`محصولات دسته «${c.name}» رو نشونم بده (category_id: ${c.id})`);
+  $("cats").appendChild(b);
+});
+add(WELCOME,"b");
+</script>
+</body>
+</html>
